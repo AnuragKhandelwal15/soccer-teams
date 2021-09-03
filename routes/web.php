@@ -13,11 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // remove register route
 Auth::routes(['register' => false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Front controller for guest users
+Route::get('/', 'App\Http\Controllers\FrontendController@index')->name('home');
+Route::get('/team/{id}/players', 'App\Http\Controllers\FrontendController@getPlayers')->name('getPlayers');
+Route::get('/team/{name}/player/{id}', 'App\Http\Controllers\FrontendController@getPlayer')->name('getPlayer');

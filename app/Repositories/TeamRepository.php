@@ -14,7 +14,7 @@ class TeamRepository implements SoccerRepository
      *
      * @return array
      */
-    public function getAll()
+    public function getAll( $id = null )
     {
         return Team::all();
     }

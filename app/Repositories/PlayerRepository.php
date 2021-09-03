@@ -14,7 +14,7 @@ class PlayerRepository implements SoccerRepository
      *
      * @return array
      */
-    public function getAll( $id )
+    public function getAll( $id = null )
     {
         return Player::where('team_id', $id)
                     ->orderBy('first_name')
