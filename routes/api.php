@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::name('api.')->group(function () {
+    Route::get('/teams', 'TeamController@teams')->name('teams');
+    Route::get('/team/{id}', 'TeamController@getPlayers')->name('getPlayers');
+    Route::get('/player/{id}', 'TeamController@getPlayer')->name('getPlayer');
 });

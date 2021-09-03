@@ -2,22 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\TeamRepository;
-use App\Repositories\PlayerRepository;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    /**
-     * Repository instance
-    */
-    public $teamRepository;
-    public $playerRepository;
-
-    public function __construct(TeamRepository $teamRepository, PlayerRepository $playerRepository)
+    
+    public function __construct()
     {
-        $this->teamRepository = $teamRepository;
-        $this->playerRepository = $playerRepository;
+       
     }
 
     /**
@@ -26,9 +18,14 @@ class FrontendController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $teams = $this->teamRepository->getAll()->toArray();
+    {   
+        $teams = [];
+        $response = $this->getData('/api/teams', 'GET', []);
 
+        if(!empty($response['data'])) {
+            $teams = $response['data'];
+        }
+        
         return view('home.teams')->with(compact('teams'));
     }
 
@@ -39,8 +36,14 @@ class FrontendController extends Controller
     */
     public function getPlayers($id)
     {
-        $teamDetails = $this->teamRepository->findById($id)->toArray();
-        $players = $this->playerRepository->getAll($id)->toArray();
+        $players = [];
+        $teamDetails = [];
+        $response = $this->getData('/api/team/'.$id, 'GET', []);
+
+        if(!empty($response['data'])) {
+            $players = $response['data']['players'];
+            $teamDetails = $response['data']['teamDetails'];
+        }
 
         return view('home.team_players')->with(compact('players', 'teamDetails'));
     }
@@ -51,11 +54,15 @@ class FrontendController extends Controller
      * @param integer $id
      * @return \Illuminate\Http\Response
     */
-    public function getPlayer($name, $id)
+    public function getPlayer($id)
     {
-        $teamName = $name;
-        $playerDetails = $this->playerRepository->findById($id)->toArray();
+        $playerDetails = [];        
+        $response = $this->getData('/api/player/'.$id, 'GET', []);
 
-        return view('home.player_details')->with(compact('playerDetails', 'teamName'));
+        if(!empty($response['data'])) {
+            $playerDetails = $response['data'];
+        }
+        
+        return view('home.player_details')->with(compact('playerDetails'));
     }
 }

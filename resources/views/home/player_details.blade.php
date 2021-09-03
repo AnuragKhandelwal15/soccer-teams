@@ -16,7 +16,7 @@
                                     <div class="card-block">
                                         <p class="card-text">
                                             Player: {{ $playerDetails['last_name'] }} {{ $playerDetails['first_name'] }}<br>
-                                            Team: {{ $teamName }}
+                                            Team: {{ $playerDetails['team']['name'] }}
                                         </p>
                                     </div>
                                 </div>

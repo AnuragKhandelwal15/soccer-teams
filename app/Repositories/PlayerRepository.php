@@ -28,7 +28,7 @@ class PlayerRepository implements SoccerRepository
      */
     public function findById($id)
     {
-        return Player::find($id);
+        return Player::with(['team'])->find($id);
     }
 
     /**

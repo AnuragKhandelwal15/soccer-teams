@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' => false]);
 
 // Front controller for guest users
-Route::get('/', 'App\Http\Controllers\FrontendController@index')->name('home');
-Route::get('/team/{id}/players', 'App\Http\Controllers\FrontendController@getPlayers')->name('getPlayers');
-Route::get('/team/{name}/player/{id}', 'App\Http\Controllers\FrontendController@getPlayer')->name('getPlayer');
+Route::get('/', 'FrontendController@index')->name('home');
+Route::get('/team/{id}/players', 'FrontendController@getPlayers')->name('getPlayers');
+Route::get('/player/{id}/team', 'FrontendController@getPlayer')->name('getPlayer');
+
