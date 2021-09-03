@@ -21,3 +21,8 @@ Route::get('/', 'FrontendController@index')->name('home');
 Route::get('/team/{id}/players', 'FrontendController@getPlayers')->name('getPlayers');
 Route::get('/player/{id}/team', 'FrontendController@getPlayer')->name('getPlayer');
 
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
+    Route::get('/', 'AdminController@show');
+    Route::get('players', 'AdminController@players')->name('admin_players');
+    Route::get('teams', 'AdminController@teams')->name('admin_teams');
+});

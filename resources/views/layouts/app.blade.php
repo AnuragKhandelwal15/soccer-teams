@@ -35,8 +35,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                            <li class="{{ \Request::route()->getName()==='home' ? 'active' : '' }}"><a href="{{ route('home') }}">Teams</a></li>
-                            <li class="{{\Request::route()->getName()==='home' ? 'active' : '' }}"><a href="{{ route('home') }}">Players</a></li>
+                            <li class="{{ \Request::route()->getName()==='admin_teams' ? 'active' : '' }}"><a href="{{ route('admin_teams') }}">Teams</a></li>
+                            <li class="{{\Request::route()->getName()==='admin_players' ? 'active' : '' }}"><a href="{{ route('admin_players') }}">Players</a></li>
                         @endauth
                     </ul>
 

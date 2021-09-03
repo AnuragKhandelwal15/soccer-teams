@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 class FrontendController extends Controller
 {
     
-    public function __construct()
-    {
-       
-    }
-
     /**
      * Display a listing of the teams.
      *

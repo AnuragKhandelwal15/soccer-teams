@@ -35,7 +35,7 @@ class TeamController extends BaseController
         
         return  $this->sendResponse(
                     $teams, 
-                    'Team List Found', 
+                    'Teams List Found', 
                     201
                 );
     }

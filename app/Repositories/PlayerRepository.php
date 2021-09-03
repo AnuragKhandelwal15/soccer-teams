@@ -14,11 +14,16 @@ class PlayerRepository implements SoccerRepository
      *
      * @return array
      */
-    public function getAll( $id = null )
+    public function getAll( $id = null, $orderBy = 'first_name' )
     {
-        return Player::where('team_id', $id)
-                    ->orderBy('first_name')
+        if($id) {
+            return Player::where('team_id', $id)
+                    ->orderBy($orderBy)
                     ->get();
+        } else {
+            return Player::orderBy($orderBy)
+                    ->get();
+        }
     }
 
     /**

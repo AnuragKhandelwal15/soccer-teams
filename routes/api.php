@@ -18,4 +18,5 @@ Route::name('api.')->group(function () {
     Route::get('/teams', 'TeamController@teams')->name('teams');
     Route::get('/team/{id}', 'TeamController@getPlayers')->name('getPlayers');
     Route::get('/player/{id}', 'TeamController@getPlayer')->name('getPlayer');
+    Route::get('/players', 'PlayerController@players')->name('players');
 });

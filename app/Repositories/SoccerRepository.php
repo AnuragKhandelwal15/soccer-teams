@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 interface SoccerRepository
 {
-    public function getAll( $id = null );
+    public function getAll( $id = null, $orderBy = null );
 
     public function findById( $id );
 

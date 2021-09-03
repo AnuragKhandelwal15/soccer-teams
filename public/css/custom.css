@@ -37,6 +37,16 @@
   font-size: 18px;
 }
 
+.new_button {
+  float:right;
+  margin:30px 10px 10px 10px;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
 @media (min-width: 992px) {
   .col-md-1,
   .col-md-2,
