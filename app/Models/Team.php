@@ -31,13 +31,10 @@ class Team extends Model
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = [
+        
+    ];
 
-    /**
-     * get the players for given team ID
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
     public function players() {
         return $this->hasMany('App\Models\Player');
     }

@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">All Players</div>
                 <div>
-                    <a href="#" class="btn btn-primary new_button">Create New Player</a>
+                    <a href="{{ route('add_player') }}" class="btn btn-primary new_button">Create New Player</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped table-inverse">
@@ -28,7 +28,7 @@
                                     <td><img src="{{ $item['player_image_url'] }}" alt="Card image cap"></td>
                                     <td>{{ $item['team_id'] }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-secondary">Edit</a> 
+                                        <a href="{{ route('edit_player', [ 'id' => $item['id'] ]) }}" class="btn btn-secondary">Edit</a> 
                                         |
                                         <a href="#" class="btn btn-danger">Delete</a>
                                     </td>

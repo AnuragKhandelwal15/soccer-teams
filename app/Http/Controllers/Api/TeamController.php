@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\TeamRepository;
-use App\Repositories\PlayerRepository;
 use Illuminate\Support\Facades\Validator;
 
 class TeamController extends BaseController
@@ -15,12 +14,10 @@ class TeamController extends BaseController
      * Repository instance
     */
     public $teamRepository;
-    public $playerRepository;
 
-    public function __construct(TeamRepository $teamRepository, PlayerRepository $playerRepository)
+    public function __construct(TeamRepository $teamRepository)
     {
         $this->teamRepository = $teamRepository;
-        $this->playerRepository = $playerRepository;
     }
 
     /**
@@ -41,47 +38,75 @@ class TeamController extends BaseController
     }
 
     /**
-     * PURPOSE: Get All player by team_id
+     * PURPOSE : Get team details
      * METHOD: GET
-     * REQ PARAMS: team_id 
-     * URL: /api/team/{id}
+     * REQ PARAMS: None
+     * URL : /api/team-details/{id}
     */
-    public function getPlayers($team_id)
+    public function teamDetail($id)
     {
-        if (empty($this->teamRepository->findById($team_id))){
-            return $this->sendError('No Team Found', 404);
-        }
-
-        $data = [];
-        $data['teamDetails'] = $this->teamRepository->findById($team_id)->toArray();
-        $data['players'] = $this->playerRepository->getAll($team_id)->toArray();
+        $team = $this->teamRepository->findById($id)->toArray();
 
         return  $this->sendResponse(
-                    $data, 
-                    '', 
+                    $team,
+                    'Teams details',
                     201
                 );
     }
 
     /**
-     * PURPOSE : Player details with team
-     * METHOD: GET
-     * REQ PARAMS : player_id 
-     * URL : /api/player/{id}
+     * PURPOSE : Add Team
+     * METHOD: POST
+     * REQ PARAMS: team_name, team_logo
+     * URL : /api/add/team
     */
-    public function getPlayer($player_id)
-    {    
-        if (empty($this->playerRepository->findById($player_id))){
-            return $this->sendError('No Player Found', 404);
+    public function addTeam(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'team_name' => 'required',
+            'team_logo' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError($validator->errors()->first());
         }
 
-        $data = [];
-        $data = $this->playerRepository->findById($player_id)->toArray();
-        
+        $validatedData = $validator->validated();
+        $record = $this->teamRepository->createOrUpdate(null, $validatedData);
+
         return  $this->sendResponse(
-                    $data, 
-                    '', 
+                    $record,
+                    'Team added.',
                     201
                 );
+    }
+
+
+    /**
+     * PURPOSE : Update
+     * METHOD: POST
+     * REQ PARAMS: id, team_name, team_logo
+     * URL : /api/edit/team
+    */
+    public function updateTeam(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'team_id' => 'required|exists:teams,id',
+            'team_name' => 'required',
+            'team_logo' => 'required',
+        ]);
+        
+        if($validator->fails()){
+            return $this->sendError($validator->errors()->first());
+        }
+        $validatedData = $validator->validated();
+
+        $record = $this->teamRepository->createOrUpdate($validatedData['team_id'], $validatedData);
+
+        return  $this->sendResponse(
+                    $record, 
+                    'Team updated.', 
+                    201
+                );
+        
     }
 }

@@ -44,7 +44,7 @@ class PlayerRepository implements SoccerRepository
     public function createOrUpdate( $id = null, $collection = [] )
     {   
         if(is_null($id)) {
-            $player = new User;
+            $player = new Player;
             $player->first_name = $collection['first_name'];
             $player->last_name = $collection['last_name'];
             $player->player_image_url = $collection['player_image_url'];
@@ -53,7 +53,7 @@ class PlayerRepository implements SoccerRepository
             return $player->save();
         }
 
-        $player = Team::find($id);
+        $player = Player::find($id);
         $player->first_name = $collection['first_name'];
         $player->last_name = $collection['last_name'];
         $player->player_image_url = $collection['player_image_url'];

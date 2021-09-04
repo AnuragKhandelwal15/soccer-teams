@@ -37,16 +37,16 @@ class TeamRepository implements SoccerRepository
     public function createOrUpdate( $id = null, $collection = [] )
     {   
         if(is_null($id)) {
-            $team = new User;
-            $team->name = $collection['name'];
-            $team->logo_url = $collection['logo_url'];
+            $team = new Team;
+            $team->name = $collection['team_name'];
+            $team->logo_url = $collection['team_logo'];
 
             return $team->save();
         }
 
         $team = Team::find($id);
-        $team->name = $collection['name'];
-        $team->logo_url = $collection['logo_url'];
+        $team->name = $collection['team_name'];
+        $team->logo_url = $collection['team_logo'];
 
         return $team->save();
     }

@@ -33,13 +33,10 @@ class Player extends Model
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = [
+        
+    ];
 
-    /**
-     * Get the type of a given Team
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
     public function team()
     {
         return $this->belongsTo('App\Models\Team');
