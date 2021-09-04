@@ -7,6 +7,18 @@ use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
+    public function __construct(Request $request)
+    {
+        $appKey = $request->header('S-TOKEN');
+        if(strcmp($appKey, env('SOCCER_TOKEN','SoccerToken')) != 0){
+            $response = [
+                'status'  => false,
+                'data'    => null,
+                'message' => "Invalid App Key",
+            ];
+            response()->json($response, 401)->send();exit;
+        }
+    }
 
     /* success response method.
      *

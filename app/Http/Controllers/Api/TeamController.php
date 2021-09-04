@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class TeamController extends BaseController
 {   
-
     /**
      * Repository instance
     */
@@ -81,7 +80,6 @@ class TeamController extends BaseController
                 );
     }
 
-
     /**
      * PURPOSE : Update
      * METHOD: POST
@@ -107,6 +105,32 @@ class TeamController extends BaseController
                     'Team updated.', 
                     201
                 );
-        
     }
+
+    /**
+     * PURPOSE : Delete tean
+     * METHOD: POST
+     * REQ PARAMS: team_id
+     * URL : /api/delete/team
+    */
+    public function deleteTeam(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'team_id' => 'required|exists:teams,id',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError($validator->errors()->first());
+        }
+
+        $validatedData = $validator->validated();
+        $record = $this->teamRepository->delete($validatedData['team_id']);
+
+        return  $this->sendResponse(
+                    $record,
+                    'Team and related player deleted.',
+                    201
+                );
+    }
+
 }

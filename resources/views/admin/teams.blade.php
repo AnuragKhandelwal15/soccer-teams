@@ -7,6 +7,7 @@
             <div class="card">
                 <div class="card-header">All Teams</div>
                 <div>
+                    <div class="alert alert-danger error"></div>
                     <a href="{{ route('add_team') }}" class="btn btn-primary new_button">Create New Team</a>
                 </div>
                 <div class="card-body">
@@ -28,7 +29,7 @@
                                     <td>
                                         <a href="{{ route('edit_team', ['id' => $item['id']]) }}" class="btn btn-secondary">Edit</a> 
                                         |
-                                        <a href="#" class="btn btn-danger">Delete</a>
+                                        <a href="javascript:void(0);" data-team_id="{{ $item['id'] }}" class="btn btn-danger delete_team">Delete</a>
                                     </td>
                                 </tr>
                                 @empty

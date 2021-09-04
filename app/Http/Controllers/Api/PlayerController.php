@@ -66,6 +66,7 @@ class PlayerController extends BaseController
                     201
                 );
     }
+
     /**
      * PURPOSE : Get All players
      * METHOD: GET
@@ -138,6 +139,32 @@ class PlayerController extends BaseController
         return  $this->sendResponse(
                     $record,
                     'Player updated.',
+                    201
+                );
+    }
+
+     /**
+     * PURPOSE : Delete Player
+     * METHOD: POST
+     * REQ PARAMS: player_id
+     * URL : /api/delete/player
+    */
+    public function deletePlayer(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'player_id' => 'required|exists:players,id',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError($validator->errors()->first());
+        }
+
+        $validatedData = $validator->validated();
+        $record = $this->playerRepository->delete($validatedData['player_id']);
+
+        return  $this->sendResponse(
+                    $record,
+                    'Player deleted.',
                     201
                 );
     }
