@@ -12,7 +12,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/custom.js') }}" defer></script>
-    <script>var soccer_key = '{{ env('SOCCER_TOKEN') }}';</script>
+    @auth<script>var soccer_key = '{{ env('SOCCER_TOKEN') }}';</script>@endauth
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

@@ -25,13 +25,13 @@ class PlayerController extends BaseController
     /**
      * PURPOSE: Get All player by team_id
      * METHOD: GET
-     * REQ PARAMS: team_id
+     * PARAMS: team_id
      * URL: /api/team/{id}
     */
     public function getPlayers($team_id)
     {
         if (empty($this->teamRepository->findById($team_id))){
-            return $this->sendError('No Team Found', 404);
+            return $this->sendError('No Teams Found', 404);
         }
 
         $data = [];
@@ -48,13 +48,13 @@ class PlayerController extends BaseController
     /**
      * PURPOSE : Player details with team
      * METHOD: GET
-     * REQ PARAMS : player_id
+     * PARAMS : player_id
      * URL : /api/player/{id}
     */
     public function getPlayer($player_id)
     {
         if (empty($this->playerRepository->findById($player_id))){
-            return $this->sendError('No Player Found', 404);
+            return $this->sendError('No Players Found', 404);
         }
 
         $data = [];
@@ -70,7 +70,7 @@ class PlayerController extends BaseController
     /**
      * PURPOSE : Get All players
      * METHOD: GET
-     * REQ PARAMS: None
+     * PARAMS: none
      * URL : /api/players
     */
     public function players()
@@ -87,7 +87,7 @@ class PlayerController extends BaseController
     /**
      * PURPOSE : Add Player
      * METHOD: POST
-     * REQ PARAMS: first_name, last_name, player_image_url, team_id
+     * PARAMS: first_name, last_name, player_image_url, team_id
      * URL : /api/add/player
     */
     public function addPlayer(Request $request)
@@ -116,7 +116,7 @@ class PlayerController extends BaseController
     /**
      * PURPOSE : Update Player
      * METHOD: POST
-     * REQ PARAMS: player_id, first_name, last_name, player_image_url, team_id
+     * PARAMS: player_id, first_name, last_name, player_image_url, team_id
      * URL : /api/edit/player
     */
     public function updatePlayer(Request $request)
@@ -146,7 +146,7 @@ class PlayerController extends BaseController
      /**
      * PURPOSE : Delete Player
      * METHOD: POST
-     * REQ PARAMS: player_id
+     * PARAMS: player_id
      * URL : /api/delete/player
     */
     public function deletePlayer(Request $request)

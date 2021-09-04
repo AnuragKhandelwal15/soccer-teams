@@ -34,7 +34,6 @@
                                         <option value="{{ $team['id']}}" {{ (@$player['team_id'] == $team['id'] ? "selected" : "") }}>{{ $team['name']}}</option>
                                     @endforeach
                                 @endif
-                                
                             </select>
                         </div>
                         <div class="alert alert-danger error"></div>

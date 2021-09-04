@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     /**
-     * Redirect admin root routing to admin teams listing
+     * Redirect admin root route to admin teams listing route
      *
      * @return route redirection
      */
@@ -38,19 +38,21 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addTeam(){
+    public function addTeam(
+    {
         return view('admin.add_team');
     }
 
 
     /**
-     * Edit team form with content
+     * Edit team form
      *
      * @return \Illuminate\Http\Response
      */
-    public function editTeam($id, Request $request){
+    public function editTeam($id, Request $request)
+    {
         $team = [];
-        $response = $this->getData('/api/team-details/'.$id, 'GET', []);
+        $response = $this->getData('/api/team-details/'.$id, 'GET', [], true);
 
         if(!empty($response['data'])) {
             $team = $response['data'];
@@ -82,7 +84,8 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addPlayer(){
+    public function addPlayer()
+    {
         $teams = [];
         $response = $this->getData('/api/teams', 'GET', []);
 
@@ -99,10 +102,11 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function editPlayer($id, Request $request){
+    public function editPlayer($id, Request $request)
+    {
         $player = [];
         $teams = [];
-        $response = $this->getData('/api/player/'.$id, 'GET', []);
+        $response = $this->getData('/api/player/'.$id, 'GET', [], true);
 
         if(!empty($response['data'])) {
             $player = $response['data'];

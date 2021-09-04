@@ -37,6 +37,11 @@ class Player extends Model
         
     ];
 
+    /**
+     * Table relation
+     *
+     * @var array
+     */
     public function team()
     {
         return $this->belongsTo('App\Models\Team');

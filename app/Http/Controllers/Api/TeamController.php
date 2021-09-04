@@ -22,7 +22,7 @@ class TeamController extends BaseController
     /**
      * PURPOSE : Get All teams
      * METHOD: GET
-     * REQ PARAMS: None
+     * PARAMS: none
      * URL : /api/teams
     */
     public function teams()
@@ -39,7 +39,7 @@ class TeamController extends BaseController
     /**
      * PURPOSE : Get team details
      * METHOD: GET
-     * REQ PARAMS: None
+     * PARAMS: none
      * URL : /api/team-details/{id}
     */
     public function teamDetail($id)
@@ -56,7 +56,7 @@ class TeamController extends BaseController
     /**
      * PURPOSE : Add Team
      * METHOD: POST
-     * REQ PARAMS: team_name, team_logo
+     * PARAMS: team_name, team_logo
      * URL : /api/add/team
     */
     public function addTeam(Request $request)
@@ -83,7 +83,7 @@ class TeamController extends BaseController
     /**
      * PURPOSE : Update
      * METHOD: POST
-     * REQ PARAMS: id, team_name, team_logo
+     * PARAMS: id, team_name, team_logo
      * URL : /api/edit/team
     */
     public function updateTeam(Request $request) {
@@ -96,8 +96,8 @@ class TeamController extends BaseController
         if($validator->fails()){
             return $this->sendError($validator->errors()->first());
         }
-        $validatedData = $validator->validated();
 
+        $validatedData = $validator->validated();
         $record = $this->teamRepository->createOrUpdate($validatedData['team_id'], $validatedData);
 
         return  $this->sendResponse(
@@ -110,7 +110,7 @@ class TeamController extends BaseController
     /**
      * PURPOSE : Delete tean
      * METHOD: POST
-     * REQ PARAMS: team_id
+     * PARAMS: team_id
      * URL : /api/delete/team
     */
     public function deleteTeam(Request $request)

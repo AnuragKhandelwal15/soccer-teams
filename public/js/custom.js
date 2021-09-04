@@ -2,6 +2,7 @@
 
 $(document).ready(function() {
 
+  //header setup on ajax calls
 	$.ajaxSetup({
 	    headers: {
 	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -47,7 +48,7 @@ $(document).ready(function() {
         });
 	});
 
-  //delete player
+  //delete team
   $('body').on('click', '.delete_team', function(e) {
       e.preventDefault();
       if (confirm('Do you want to delete?')){
@@ -128,5 +129,4 @@ $(document).ready(function() {
         });
       }
   });
-
 });

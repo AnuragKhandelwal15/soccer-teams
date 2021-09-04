@@ -14,9 +14,14 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function getData($endPoint, $method, $params = null )
+    public function getData($endPoint, $method, $params = null, $header = null)
     {   
         $request = Request::create($endPoint, $method, $params);
+
+        if($header) {
+            $request->headers->set('S-TOKEN', env('SOCCER_TOKEN'));    
+        }
+
         $response = Route::dispatch($request);
 
         return $response->getOriginalContent();

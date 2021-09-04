@@ -35,14 +35,24 @@ class Team extends Model
         
     ];
 
-    protected static function boot() {
+    /**
+     * cascade delete
+     */
+    protected static function boot()
+    {
         parent::boot();
         self::deleted(function ($team) {
             $team->players()->delete();
         });
     }
 
-    public function players() {
+    /**
+     * Table relation
+     *
+     * @var array
+     */
+    public function players()
+    {
         return $this->hasMany('App\Models\Player');
     }
 }

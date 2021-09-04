@@ -33,7 +33,6 @@
                                         <option value="{{ $team['id']}}">{{ $team['name']}}</option>
                                     @endforeach
                                 @endif
-                                
                             </select>
                         </div>
                         <div class="alert alert-danger error"></div>
