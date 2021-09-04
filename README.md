@@ -33,6 +33,26 @@ email - admin@admin.com
 password - admin
 ```
 
+## Screenshots:
+
+##### Team Listing
+![screenshot](https://github.com/AnuragKhandelwal15/soccer-teams/blob/master/screenshots/team_listing.png)
+
+##### Team Players
+![screenshot](https://github.com/AnuragKhandelwal15/soccer-teams/blob/master/screenshots/team_players.png)
+
+##### Player Details
+![screenshot](https://github.com/AnuragKhandelwal15/soccer-teams/blob/master/screenshots/player_details.png)
+
+##### Login Screen
+![screenshot](https://github.com/AnuragKhandelwal15/soccer-teams/blob/master/screenshots/login_screen.png)
+
+##### Admin Team CRUD
+![screenshot](https://github.com/AnuragKhandelwal15/soccer-teams/blob/master/screenshots/admin_teams_listings.png)
+
+##### Admin Player CRUD
+![screenshot](https://github.com/AnuragKhandelwal15/soccer-teams/blob/master/screenshots/admin_players_listing.png)
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
