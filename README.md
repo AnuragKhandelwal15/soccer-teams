@@ -13,13 +13,13 @@ These are the server requirements needed to setup the application on different m
 ## Installation
 Follow below steps to be able to run the application
 
-1. `git clone https://github.com/AnuragKhandelwal15/soccer-teams.git`
-2. `cd soccer-teams && cp .env.example .env and update with needfuls. Also add this KEY at the bottom SOCCER_TOKEN having some unique key value`
-3. `composer install && composer update`
-4. `php artisan key:generate`
-5. `php artisan migrate`
-6. `php artisan db:seed`
-7. `serve the application`
+1. git clone https://github.com/AnuragKhandelwal15/soccer-teams.git
+2. cd soccer-teams && cp .env.example .env and update with needfuls. Also add this KEY at the bottom SOCCER_TOKEN having some unique key value
+3. composer install && composer update
+4. php artisan key:generate
+5. php artisan migrate
+6. php artisan db:seed
+7. serve the application
 
 ## To Run the application on localhost
 #### Application will serve on the available PORT like `http://localhost:8000`
