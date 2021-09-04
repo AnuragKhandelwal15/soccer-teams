@@ -38,7 +38,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addTeam(
+    public function addTeam()
     {
         return view('admin.add_team');
     }
