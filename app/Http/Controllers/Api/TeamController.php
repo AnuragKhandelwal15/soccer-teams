@@ -39,6 +39,7 @@ class TeamController extends BaseController
     /**
      * PURPOSE : Get team details
      * METHOD: GET
+     * HEADERS: S-TOKEN
      * PARAMS: none
      * URL : /api/team-details/{id}
     */
@@ -56,6 +57,7 @@ class TeamController extends BaseController
     /**
      * PURPOSE : Add Team
      * METHOD: POST
+     * HEADERS: S-TOKEN
      * PARAMS: team_name, team_logo
      * URL : /api/add/team
     */
@@ -83,6 +85,7 @@ class TeamController extends BaseController
     /**
      * PURPOSE : Update
      * METHOD: POST
+     * HEADERS: S-TOKEN
      * PARAMS: id, team_name, team_logo
      * URL : /api/edit/team
     */
@@ -110,6 +113,7 @@ class TeamController extends BaseController
     /**
      * PURPOSE : Delete tean
      * METHOD: POST
+     * HEADERS: S-TOKEN
      * PARAMS: team_id
      * URL : /api/delete/team
     */

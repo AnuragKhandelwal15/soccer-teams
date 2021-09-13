@@ -87,6 +87,7 @@ class PlayerController extends BaseController
     /**
      * PURPOSE : Add Player
      * METHOD: POST
+     * HEADERS: S-TOKEN
      * PARAMS: first_name, last_name, player_image_url, team_id
      * URL : /api/add/player
     */
@@ -116,6 +117,7 @@ class PlayerController extends BaseController
     /**
      * PURPOSE : Update Player
      * METHOD: POST
+     * HEADERS: S-TOKEN
      * PARAMS: player_id, first_name, last_name, player_image_url, team_id
      * URL : /api/edit/player
     */
@@ -146,6 +148,7 @@ class PlayerController extends BaseController
      /**
      * PURPOSE : Delete Player
      * METHOD: POST
+     * HEADERS: S-TOKEN
      * PARAMS: player_id
      * URL : /api/delete/player
     */

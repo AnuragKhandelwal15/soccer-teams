@@ -1,0 +1,983 @@
+openapi: 3.0.3
+info:
+    title: Soccer-Team-Management
+    description: ''
+    version: 1.0.0
+servers:
+    -
+        url: 'http://localhost'
+paths:
+    /sanctum/csrf-cookie:
+        get:
+            summary: 'Return an empty response simply to trigger the storage of the CSRF cookie in the browser.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /api/teams:
+        get:
+            summary: "PURPOSE : Get All teams\nMETHOD: GET\nPARAMS: none\nURL : /api/teams"
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                201:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    status: true
+                                    data: [{ id: 1, name: 'Miss Ettie Klein', logo_url: 'https://via.placeholder.com/100x100.png/004466?text=rerum', created_at: null, updated_at: null }, { id: 2, name: 'Prof. Casey Osinski', logo_url: 'https://via.placeholder.com/100x100.png/0066dd?text=voluptas', created_at: null, updated_at: null }, { id: 3, name: 'Evangeline Bergnaum', logo_url: 'https://via.placeholder.com/100x100.png/003300?text=reiciendis', created_at: null, updated_at: null }, { id: 4, name: 'Erich Mertz', logo_url: 'https://via.placeholder.com/100x100.png/0011aa?text=officia', created_at: null, updated_at: null }, { id: 5, name: 'Katheryn Leannon', logo_url: 'https://via.placeholder.com/100x100.png/001155?text=voluptas', created_at: null, updated_at: null }, { id: 6, name: 'Moriah Langosh', logo_url: 'https://via.placeholder.com/100x100.png/0055ff?text=a', created_at: null, updated_at: null }, { id: 7, name: 'Cielo Cremin', logo_url: 'https://via.placeholder.com/100x100.png/00aacc?text=qui', created_at: null, updated_at: null }, { id: 8, name: 'Vidal Schoen', logo_url: 'https://via.placeholder.com/100x100.png/002266?text=quia', created_at: null, updated_at: null }, { id: 9, name: 'Brendan Miller', logo_url: 'https://via.placeholder.com/100x100.png/00aa88?text=dolor', created_at: null, updated_at: null }]
+                                    message: 'Teams List Found'
+                                properties:
+                                    status: { type: boolean, example: true }
+                                    data: { type: array, example: [{ id: 1, name: 'Miss Ettie Klein', logo_url: 'https://via.placeholder.com/100x100.png/004466?text=rerum', created_at: null, updated_at: null }, { id: 2, name: 'Prof. Casey Osinski', logo_url: 'https://via.placeholder.com/100x100.png/0066dd?text=voluptas', created_at: null, updated_at: null }, { id: 3, name: 'Evangeline Bergnaum', logo_url: 'https://via.placeholder.com/100x100.png/003300?text=reiciendis', created_at: null, updated_at: null }, { id: 4, name: 'Erich Mertz', logo_url: 'https://via.placeholder.com/100x100.png/0011aa?text=officia', created_at: null, updated_at: null }, { id: 5, name: 'Katheryn Leannon', logo_url: 'https://via.placeholder.com/100x100.png/001155?text=voluptas', created_at: null, updated_at: null }, { id: 6, name: 'Moriah Langosh', logo_url: 'https://via.placeholder.com/100x100.png/0055ff?text=a', created_at: null, updated_at: null }, { id: 7, name: 'Cielo Cremin', logo_url: 'https://via.placeholder.com/100x100.png/00aacc?text=qui', created_at: null, updated_at: null }, { id: 8, name: 'Vidal Schoen', logo_url: 'https://via.placeholder.com/100x100.png/002266?text=quia', created_at: null, updated_at: null }, { id: 9, name: 'Brendan Miller', logo_url: 'https://via.placeholder.com/100x100.png/00aa88?text=dolor', created_at: null, updated_at: null }], items: { type: object } }
+                                    message: { type: string, example: 'Teams List Found' }
+            tags:
+                - Endpoints
+            security: []
+    '/api/team/{id}':
+        get:
+            summary: "PURPOSE: Get All player by team_id\nMETHOD: GET\nPARAMS: team_id\nURL: /api/team/{id}"
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                404:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    status: false
+                                    data: null
+                                    message: 'No Teams Found'
+                                properties:
+                                    status: { type: boolean, example: false }
+                                    data: { type: string, example: null }
+                                    message: { type: string, example: 'No Teams Found' }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: id
+                description: ''
+                example: quis
+                required: true
+                schema:
+                    type: string
+    '/api/player/{id}':
+        get:
+            summary: "PURPOSE : Player details with team\nMETHOD: GET\nPARAMS : player_id\nURL : /api/player/{id}"
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                404:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    status: false
+                                    data: null
+                                    message: 'No Players Found'
+                                properties:
+                                    status: { type: boolean, example: false }
+                                    data: { type: string, example: null }
+                                    message: { type: string, example: 'No Players Found' }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: id
+                description: ''
+                example: fugiat
+                required: true
+                schema:
+                    type: string
+    /api/players:
+        get:
+            summary: "PURPOSE : Get All players\nMETHOD: GET\nPARAMS: none\nURL : /api/players"
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                201:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    status: true
+                                    data: [{ id: 10, first_name: Carter, last_name: Hahn, player_image_url: 'https://via.placeholder.com/100x100.png/002200?text=eos', team_id: 1, created_at: null, updated_at: null }, { id: 12, first_name: Jaycee, last_name: Labadie, player_image_url: 'https://via.placeholder.com/100x100.png/008800?text=et', team_id: 1, created_at: null, updated_at: null }, { id: 22, first_name: Titus, last_name: Emard, player_image_url: 'https://via.placeholder.com/100x100.png/0066bb?text=aut', team_id: 1, created_at: null, updated_at: null }, { id: 3, first_name: Jocelynsaas, last_name: Stoke, player_image_url: 'https://via.placeholder.com/100x100.png/00ee33?text=ex', team_id: 2, created_at: null, updated_at: null }, { id: 8, first_name: Wellington, last_name: Paucek, player_image_url: 'https://via.placeholder.com/100x100.png/00aa88?text=ratione', team_id: 2, created_at: null, updated_at: null }, { id: 19, first_name: Eugenia, last_name: Brown, player_image_url: 'https://via.placeholder.com/100x100.png/00ccff?text=dolor', team_id: 2, created_at: null, updated_at: null }, { id: 25, first_name: Lorna, last_name: Glover, player_image_url: 'https://via.placeholder.com/100x100.png/008855?text=ut', team_id: 2, created_at: null, updated_at: null }, { id: 36, first_name: Vickie, last_name: Crist, player_image_url: 'https://via.placeholder.com/100x100.png/00ffbb?text=quia', team_id: 2, created_at: null, updated_at: null }, { id: 38, first_name: Belle, last_name: Muller, player_image_url: 'https://via.placeholder.com/100x100.png/006633?text=nam', team_id: 2, created_at: null, updated_at: null }, { id: 49, first_name: Catharine, last_name: Kulas, player_image_url: 'https://via.placeholder.com/100x100.png/003300?text=in', team_id: 2, created_at: null, updated_at: null }, { id: 4, first_name: Maymie, last_name: Buckridge, player_image_url: 'https://via.placeholder.com/100x100.png/00aa00?text=aspernatur', team_id: 3, created_at: null, updated_at: null }, { id: 11, first_name: Cassandra, last_name: Tremblay, player_image_url: 'https://via.placeholder.com/100x100.png/00ff44?text=nulla', team_id: 3, created_at: null, updated_at: null }, { id: 13, first_name: German, last_name: Friesen, player_image_url: 'https://via.placeholder.com/100x100.png/003311?text=et', team_id: 3, created_at: null, updated_at: null }, { id: 24, first_name: Ramon, last_name: Donnelly, player_image_url: 'https://via.placeholder.com/100x100.png/00aa22?text=sit', team_id: 3, created_at: null, updated_at: null }, { id: 35, first_name: Enrique, last_name: Russel, player_image_url: 'https://via.placeholder.com/100x100.png/006655?text=harum', team_id: 3, created_at: null, updated_at: null }, { id: 9, first_name: Raymond, last_name: Ebert, player_image_url: 'https://via.placeholder.com/100x100.png/0088cc?text=occaecati', team_id: 4, created_at: null, updated_at: null }, { id: 27, first_name: Oleta, last_name: Heathcote, player_image_url: 'https://via.placeholder.com/100x100.png/001155?text=adipisci', team_id: 4, created_at: null, updated_at: null }, { id: 34, first_name: Maia, last_name: Gleason, player_image_url: 'https://via.placeholder.com/100x100.png/00cc22?text=quod', team_id: 4, created_at: null, updated_at: null }, { id: 1, first_name: Viviane, last_name: Douglas, player_image_url: 'https://via.placeholder.com/100x100.png/0033cc?text=cumque', team_id: 5, created_at: null, updated_at: null }, { id: 5, first_name: Maiya, last_name: Schuppe, player_image_url: 'https://via.placeholder.com/100x100.png/003366?text=numquam', team_id: 5, created_at: null, updated_at: null }, { id: 18, first_name: Gudrun, last_name: Walter, player_image_url: 'https://via.placeholder.com/100x100.png/009955?text=magni', team_id: 5, created_at: null, updated_at: null }, { id: 30, first_name: Kyla, last_name: Kovacek, player_image_url: 'https://via.placeholder.com/100x100.png/0000ff?text=maiores', team_id: 5, created_at: null, updated_at: null }, { id: 31, first_name: Fiona, last_name: Predovic, player_image_url: 'https://via.placeholder.com/100x100.png/008877?text=ratione', team_id: 5, created_at: null, updated_at: null }, { id: 45, first_name: Dorothea, last_name: Jakubowski, player_image_url: 'https://via.placeholder.com/100x100.png/0033ee?text=cupiditate', team_id: 5, created_at: null, updated_at: null }, { id: 7, first_name: Seth, last_name: Beatty, player_image_url: 'https://via.placeholder.com/100x100.png/0000ee?text=incidunt', team_id: 6, created_at: null, updated_at: null }, { id: 15, first_name: Mohammad, last_name: Smith, player_image_url: 'https://via.placeholder.com/100x100.png/00cc55?text=suscipit', team_id: 6, created_at: null, updated_at: null }, { id: 23, first_name: Myron, last_name: Terry, player_image_url: 'https://via.placeholder.com/100x100.png/002288?text=fuga', team_id: 6, created_at: null, updated_at: null }, { id: 26, first_name: Stacey, last_name: Stark, player_image_url: 'https://via.placeholder.com/100x100.png/00aaff?text=architecto', team_id: 6, created_at: null, updated_at: null }, { id: 28, first_name: Stanton, last_name: Funk, player_image_url: 'https://via.placeholder.com/100x100.png/0099aa?text=maxime', team_id: 6, created_at: null, updated_at: null }, { id: 50, first_name: Theresia, last_name: Wilkinson, player_image_url: 'https://via.placeholder.com/100x100.png/000033?text=et', team_id: 6, created_at: null, updated_at: null }, { id: 16, first_name: Wanda, last_name: Haley, player_image_url: 'https://via.placeholder.com/100x100.png/0033ee?text=est', team_id: 7, created_at: null, updated_at: null }, { id: 43, first_name: Felton, last_name: Legros, player_image_url: 'https://via.placeholder.com/100x100.png/008877?text=accusamus', team_id: 7, created_at: null, updated_at: null }, { id: 14, first_name: Alexanne, last_name: Vandervort, player_image_url: 'https://via.placeholder.com/100x100.png/004433?text=alias', team_id: 8, created_at: null, updated_at: null }, { id: 20, first_name: Precious, last_name: Stracke, player_image_url: 'https://via.placeholder.com/100x100.png/0088ee?text=vel', team_id: 8, created_at: null, updated_at: null }, { id: 32, first_name: Beverly, last_name: Monahan, player_image_url: 'https://via.placeholder.com/100x100.png/007788?text=expedita', team_id: 8, created_at: null, updated_at: null }, { id: 37, first_name: Alvera, last_name: Miller, player_image_url: 'https://via.placeholder.com/100x100.png/0044aa?text=et', team_id: 8, created_at: null, updated_at: null }, { id: 42, first_name: Kianna, last_name: Upton, player_image_url: 'https://via.placeholder.com/100x100.png/00ee22?text=sequi', team_id: 8, created_at: null, updated_at: null }, { id: 44, first_name: Lowell, last_name: Bogan, player_image_url: 'https://via.placeholder.com/100x100.png/00ffaa?text=tempora', team_id: 8, created_at: null, updated_at: null }, { id: 47, first_name: Mae, last_name: Glover, player_image_url: 'https://via.placeholder.com/100x100.png/005533?text=inventore', team_id: 8, created_at: null, updated_at: null }, { id: 48, first_name: Brionna, last_name: Herman, player_image_url: 'https://via.placeholder.com/100x100.png/00aacc?text=et', team_id: 8, created_at: null, updated_at: null }, { id: 2, first_name: Omari, last_name: Barton, player_image_url: 'https://via.placeholder.com/100x100.png/005533?text=est', team_id: 9, created_at: null, updated_at: null }, { id: 21, first_name: Susan, last_name: Schneider, player_image_url: 'https://via.placeholder.com/100x100.png/008833?text=excepturi', team_id: 9, created_at: null, updated_at: null }, { id: 33, first_name: Ivory, last_name: Treutel, player_image_url: 'https://via.placeholder.com/100x100.png/002277?text=earum', team_id: 9, created_at: null, updated_at: null }, { id: 40, first_name: Reyes, last_name: Prohaska, player_image_url: 'https://via.placeholder.com/100x100.png/0044ee?text=qui', team_id: 9, created_at: null, updated_at: null }, { id: 46, first_name: Annabelle, last_name: Walsh, player_image_url: 'https://via.placeholder.com/100x100.png/00bb22?text=dolores', team_id: 9, created_at: null, updated_at: null }]
+                                    message: 'Players List Found'
+                                properties:
+                                    status: { type: boolean, example: true }
+                                    data: { type: array, example: [{ id: 10, first_name: Carter, last_name: Hahn, player_image_url: 'https://via.placeholder.com/100x100.png/002200?text=eos', team_id: 1, created_at: null, updated_at: null }, { id: 12, first_name: Jaycee, last_name: Labadie, player_image_url: 'https://via.placeholder.com/100x100.png/008800?text=et', team_id: 1, created_at: null, updated_at: null }, { id: 22, first_name: Titus, last_name: Emard, player_image_url: 'https://via.placeholder.com/100x100.png/0066bb?text=aut', team_id: 1, created_at: null, updated_at: null }, { id: 3, first_name: Jocelynsaas, last_name: Stoke, player_image_url: 'https://via.placeholder.com/100x100.png/00ee33?text=ex', team_id: 2, created_at: null, updated_at: null }, { id: 8, first_name: Wellington, last_name: Paucek, player_image_url: 'https://via.placeholder.com/100x100.png/00aa88?text=ratione', team_id: 2, created_at: null, updated_at: null }, { id: 19, first_name: Eugenia, last_name: Brown, player_image_url: 'https://via.placeholder.com/100x100.png/00ccff?text=dolor', team_id: 2, created_at: null, updated_at: null }, { id: 25, first_name: Lorna, last_name: Glover, player_image_url: 'https://via.placeholder.com/100x100.png/008855?text=ut', team_id: 2, created_at: null, updated_at: null }, { id: 36, first_name: Vickie, last_name: Crist, player_image_url: 'https://via.placeholder.com/100x100.png/00ffbb?text=quia', team_id: 2, created_at: null, updated_at: null }, { id: 38, first_name: Belle, last_name: Muller, player_image_url: 'https://via.placeholder.com/100x100.png/006633?text=nam', team_id: 2, created_at: null, updated_at: null }, { id: 49, first_name: Catharine, last_name: Kulas, player_image_url: 'https://via.placeholder.com/100x100.png/003300?text=in', team_id: 2, created_at: null, updated_at: null }, { id: 4, first_name: Maymie, last_name: Buckridge, player_image_url: 'https://via.placeholder.com/100x100.png/00aa00?text=aspernatur', team_id: 3, created_at: null, updated_at: null }, { id: 11, first_name: Cassandra, last_name: Tremblay, player_image_url: 'https://via.placeholder.com/100x100.png/00ff44?text=nulla', team_id: 3, created_at: null, updated_at: null }, { id: 13, first_name: German, last_name: Friesen, player_image_url: 'https://via.placeholder.com/100x100.png/003311?text=et', team_id: 3, created_at: null, updated_at: null }, { id: 24, first_name: Ramon, last_name: Donnelly, player_image_url: 'https://via.placeholder.com/100x100.png/00aa22?text=sit', team_id: 3, created_at: null, updated_at: null }, { id: 35, first_name: Enrique, last_name: Russel, player_image_url: 'https://via.placeholder.com/100x100.png/006655?text=harum', team_id: 3, created_at: null, updated_at: null }, { id: 9, first_name: Raymond, last_name: Ebert, player_image_url: 'https://via.placeholder.com/100x100.png/0088cc?text=occaecati', team_id: 4, created_at: null, updated_at: null }, { id: 27, first_name: Oleta, last_name: Heathcote, player_image_url: 'https://via.placeholder.com/100x100.png/001155?text=adipisci', team_id: 4, created_at: null, updated_at: null }, { id: 34, first_name: Maia, last_name: Gleason, player_image_url: 'https://via.placeholder.com/100x100.png/00cc22?text=quod', team_id: 4, created_at: null, updated_at: null }, { id: 1, first_name: Viviane, last_name: Douglas, player_image_url: 'https://via.placeholder.com/100x100.png/0033cc?text=cumque', team_id: 5, created_at: null, updated_at: null }, { id: 5, first_name: Maiya, last_name: Schuppe, player_image_url: 'https://via.placeholder.com/100x100.png/003366?text=numquam', team_id: 5, created_at: null, updated_at: null }, { id: 18, first_name: Gudrun, last_name: Walter, player_image_url: 'https://via.placeholder.com/100x100.png/009955?text=magni', team_id: 5, created_at: null, updated_at: null }, { id: 30, first_name: Kyla, last_name: Kovacek, player_image_url: 'https://via.placeholder.com/100x100.png/0000ff?text=maiores', team_id: 5, created_at: null, updated_at: null }, { id: 31, first_name: Fiona, last_name: Predovic, player_image_url: 'https://via.placeholder.com/100x100.png/008877?text=ratione', team_id: 5, created_at: null, updated_at: null }, { id: 45, first_name: Dorothea, last_name: Jakubowski, player_image_url: 'https://via.placeholder.com/100x100.png/0033ee?text=cupiditate', team_id: 5, created_at: null, updated_at: null }, { id: 7, first_name: Seth, last_name: Beatty, player_image_url: 'https://via.placeholder.com/100x100.png/0000ee?text=incidunt', team_id: 6, created_at: null, updated_at: null }, { id: 15, first_name: Mohammad, last_name: Smith, player_image_url: 'https://via.placeholder.com/100x100.png/00cc55?text=suscipit', team_id: 6, created_at: null, updated_at: null }, { id: 23, first_name: Myron, last_name: Terry, player_image_url: 'https://via.placeholder.com/100x100.png/002288?text=fuga', team_id: 6, created_at: null, updated_at: null }, { id: 26, first_name: Stacey, last_name: Stark, player_image_url: 'https://via.placeholder.com/100x100.png/00aaff?text=architecto', team_id: 6, created_at: null, updated_at: null }, { id: 28, first_name: Stanton, last_name: Funk, player_image_url: 'https://via.placeholder.com/100x100.png/0099aa?text=maxime', team_id: 6, created_at: null, updated_at: null }, { id: 50, first_name: Theresia, last_name: Wilkinson, player_image_url: 'https://via.placeholder.com/100x100.png/000033?text=et', team_id: 6, created_at: null, updated_at: null }, { id: 16, first_name: Wanda, last_name: Haley, player_image_url: 'https://via.placeholder.com/100x100.png/0033ee?text=est', team_id: 7, created_at: null, updated_at: null }, { id: 43, first_name: Felton, last_name: Legros, player_image_url: 'https://via.placeholder.com/100x100.png/008877?text=accusamus', team_id: 7, created_at: null, updated_at: null }, { id: 14, first_name: Alexanne, last_name: Vandervort, player_image_url: 'https://via.placeholder.com/100x100.png/004433?text=alias', team_id: 8, created_at: null, updated_at: null }, { id: 20, first_name: Precious, last_name: Stracke, player_image_url: 'https://via.placeholder.com/100x100.png/0088ee?text=vel', team_id: 8, created_at: null, updated_at: null }, { id: 32, first_name: Beverly, last_name: Monahan, player_image_url: 'https://via.placeholder.com/100x100.png/007788?text=expedita', team_id: 8, created_at: null, updated_at: null }, { id: 37, first_name: Alvera, last_name: Miller, player_image_url: 'https://via.placeholder.com/100x100.png/0044aa?text=et', team_id: 8, created_at: null, updated_at: null }, { id: 42, first_name: Kianna, last_name: Upton, player_image_url: 'https://via.placeholder.com/100x100.png/00ee22?text=sequi', team_id: 8, created_at: null, updated_at: null }, { id: 44, first_name: Lowell, last_name: Bogan, player_image_url: 'https://via.placeholder.com/100x100.png/00ffaa?text=tempora', team_id: 8, created_at: null, updated_at: null }, { id: 47, first_name: Mae, last_name: Glover, player_image_url: 'https://via.placeholder.com/100x100.png/005533?text=inventore', team_id: 8, created_at: null, updated_at: null }, { id: 48, first_name: Brionna, last_name: Herman, player_image_url: 'https://via.placeholder.com/100x100.png/00aacc?text=et', team_id: 8, created_at: null, updated_at: null }, { id: 2, first_name: Omari, last_name: Barton, player_image_url: 'https://via.placeholder.com/100x100.png/005533?text=est', team_id: 9, created_at: null, updated_at: null }, { id: 21, first_name: Susan, last_name: Schneider, player_image_url: 'https://via.placeholder.com/100x100.png/008833?text=excepturi', team_id: 9, created_at: null, updated_at: null }, { id: 33, first_name: Ivory, last_name: Treutel, player_image_url: 'https://via.placeholder.com/100x100.png/002277?text=earum', team_id: 9, created_at: null, updated_at: null }, { id: 40, first_name: Reyes, last_name: Prohaska, player_image_url: 'https://via.placeholder.com/100x100.png/0044ee?text=qui', team_id: 9, created_at: null, updated_at: null }, { id: 46, first_name: Annabelle, last_name: Walsh, player_image_url: 'https://via.placeholder.com/100x100.png/00bb22?text=dolores', team_id: 9, created_at: null, updated_at: null }], items: { type: object } }
+                                    message: { type: string, example: 'Players List Found' }
+            tags:
+                - Endpoints
+            security: []
+    /api/add/team:
+        post:
+            summary: "PURPOSE : Add Team\nMETHOD: POST\nHEADERS: S-TOKEN\nPARAMS: team_name, team_logo\nURL : /api/add/team"
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /api/edit/team:
+        post:
+            summary: "PURPOSE : Update\nMETHOD: POST\nHEADERS: S-TOKEN\nPARAMS: id, team_name, team_logo\nURL : /api/edit/team"
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /api/delete/team:
+        post:
+            summary: "PURPOSE : Delete tean\nMETHOD: POST\nHEADERS: S-TOKEN\nPARAMS: team_id\nURL : /api/delete/team"
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    '/api/team-details/{id}':
+        get:
+            summary: "PURPOSE : Get team details\nMETHOD: GET\nHEADERS: S-TOKEN\nPARAMS: none\nURL : /api/team-details/{id}"
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    status: false
+                                    data: null
+                                    message: 'Invalid Api Key'
+                                properties:
+                                    status: { type: boolean, example: false }
+                                    data: { type: string, example: null }
+                                    message: { type: string, example: 'Invalid Api Key' }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: id
+                description: ''
+                example: quia
+                required: true
+                schema:
+                    type: string
+    /api/add/player:
+        post:
+            summary: "PURPOSE : Add Player\nMETHOD: POST\nHEADERS: S-TOKEN\nPARAMS: first_name, last_name, player_image_url, team_id\nURL : /api/add/player"
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /api/edit/player:
+        post:
+            summary: "PURPOSE : Update Player\nMETHOD: POST\nHEADERS: S-TOKEN\nPARAMS: player_id, first_name, last_name, player_image_url, team_id\nURL : /api/edit/player"
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /api/delete/player:
+        post:
+            summary: "PURPOSE : Delete Player\nMETHOD: POST\nHEADERS: S-TOKEN\nPARAMS: player_id\nURL : /api/delete/player"
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /login:
+        get:
+            summary: 'Show the application''s login form.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n    <!-- CSRF Token -->\n    <meta name=\"csrf-token\" content=\"Fj0GXjbg3Wt5FXIpPtCalwXZRsy5SYSGha1fqKqo\">\n\n    <title>Soccer-Team-Management</title>\n\n    <!-- Scripts -->\n    <script src=\"http://localhost/js/app.js\" defer></script>\n    <script src=\"http://localhost/js/custom.js\" defer></script>\n    \n    <!-- Fonts -->\n    <link rel=\"dns-prefetch\" href=\"//fonts.gstatic.com\">\n    <link href=\"https://fonts.googleapis.com/css?family=Nunito\" rel=\"stylesheet\">\n\n    <!-- Styles -->\n    <link href=\"http://localhost/css/app.css\" rel=\"stylesheet\">\n    <link href=\"http://localhost/css/custom.css\" rel=\"stylesheet\">\n</head>\n<body>\n    <div id=\"app\">\n        <nav class=\"navbar navbar-expand-md navbar-light bg-white shadow-sm\">\n            <div class=\"container\">\n                <a class=\"navbar-brand\" href=\"http://localhost\">\n                    Soccer-Team-Management\n                </a>\n                <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                    <span class=\"navbar-toggler-icon\"></span>\n                </button>\n\n                <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n                    <!-- Left Side Of Navbar -->\n                    <ul class=\"navbar-nav mr-auto\">\n                                            </ul>\n\n                    <!-- Right Side Of Navbar -->\n                    <ul class=\"navbar-nav ml-auto\">\n                        <!-- Authentication Links -->\n                                                                                    <li class=\"nav-item\">\n                                    <a class=\"nav-link\" href=\"http://localhost/login\">Login</a>\n                                </li>\n                            \n                                                                        </ul>\n                </div>\n            </div>\n        </nav>\n\n        <main class=\"py-4\">\n            <div class=\"container\">\n    <div class=\"row justify-content-center\">\n        <div class=\"col-md-8\">\n            <div class=\"card\">\n                <div class=\"card-header\">Login</div>\n\n                <div class=\"card-body\">\n                    <form method=\"POST\" action=\"http://localhost/login\">\n                        <input type=\"hidden\" name=\"_token\" value=\"Fj0GXjbg3Wt5FXIpPtCalwXZRsy5SYSGha1fqKqo\">\n                        <div class=\"form-group row\">\n                            <label for=\"email\" class=\"col-md-4 col-form-label text-md-right\">E-Mail Address</label>\n\n                            <div class=\"col-md-6\">\n                                <input id=\"email\" type=\"email\" class=\"form-control \" name=\"email\" value=\"\" required autocomplete=\"email\" autofocus>\n\n                                                            </div>\n                        </div>\n\n                        <div class=\"form-group row\">\n                            <label for=\"password\" class=\"col-md-4 col-form-label text-md-right\">Password</label>\n\n                            <div class=\"col-md-6\">\n                                <input id=\"password\" type=\"password\" class=\"form-control \" name=\"password\" required autocomplete=\"current-password\">\n\n                                                            </div>\n                        </div>\n\n                        <div class=\"form-group row\">\n                            <div class=\"col-md-6 offset-md-4\">\n                                <div class=\"form-check\">\n                                    <input class=\"form-check-input\" type=\"checkbox\" name=\"remember\" id=\"remember\" >\n\n                                    <label class=\"form-check-label\" for=\"remember\">\n                                        Remember Me\n                                    </label>\n                                </div>\n                            </div>\n                        </div>\n\n                        <div class=\"form-group row mb-0\">\n                            <div class=\"col-md-8 offset-md-4\">\n                                <button type=\"submit\" class=\"btn btn-primary\">\n                                    Login\n                                </button>\n\n                                                                    <a class=\"btn btn-link\" href=\"http://localhost/password/reset\">\n                                        Forgot Your Password?\n                                    </a>\n                                                            </div>\n                        </div>\n                    </form>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n        </main>\n    </div>\n</body>\n</html>\n"
+            tags:
+                - Endpoints
+            security: []
+        post:
+            summary: 'Handle a login request to the application.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /logout:
+        post:
+            summary: 'Log the user out of the application.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /password/reset:
+        get:
+            summary: 'Display the form to request a password reset link.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n    <!-- CSRF Token -->\n    <meta name=\"csrf-token\" content=\"Fj0GXjbg3Wt5FXIpPtCalwXZRsy5SYSGha1fqKqo\">\n\n    <title>Soccer-Team-Management</title>\n\n    <!-- Scripts -->\n    <script src=\"http://localhost/js/app.js\" defer></script>\n    <script src=\"http://localhost/js/custom.js\" defer></script>\n    \n    <!-- Fonts -->\n    <link rel=\"dns-prefetch\" href=\"//fonts.gstatic.com\">\n    <link href=\"https://fonts.googleapis.com/css?family=Nunito\" rel=\"stylesheet\">\n\n    <!-- Styles -->\n    <link href=\"http://localhost/css/app.css\" rel=\"stylesheet\">\n    <link href=\"http://localhost/css/custom.css\" rel=\"stylesheet\">\n</head>\n<body>\n    <div id=\"app\">\n        <nav class=\"navbar navbar-expand-md navbar-light bg-white shadow-sm\">\n            <div class=\"container\">\n                <a class=\"navbar-brand\" href=\"http://localhost\">\n                    Soccer-Team-Management\n                </a>\n                <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                    <span class=\"navbar-toggler-icon\"></span>\n                </button>\n\n                <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n                    <!-- Left Side Of Navbar -->\n                    <ul class=\"navbar-nav mr-auto\">\n                                            </ul>\n\n                    <!-- Right Side Of Navbar -->\n                    <ul class=\"navbar-nav ml-auto\">\n                        <!-- Authentication Links -->\n                                                                                    <li class=\"nav-item\">\n                                    <a class=\"nav-link\" href=\"http://localhost/login\">Login</a>\n                                </li>\n                            \n                                                                        </ul>\n                </div>\n            </div>\n        </nav>\n\n        <main class=\"py-4\">\n            <div class=\"container\">\n    <div class=\"row justify-content-center\">\n        <div class=\"col-md-8\">\n            <div class=\"card\">\n                <div class=\"card-header\">Reset Password</div>\n\n                <div class=\"card-body\">\n                    \n                    <form method=\"POST\" action=\"http://localhost/password/email\">\n                        <input type=\"hidden\" name=\"_token\" value=\"Fj0GXjbg3Wt5FXIpPtCalwXZRsy5SYSGha1fqKqo\">\n                        <div class=\"form-group row\">\n                            <label for=\"email\" class=\"col-md-4 col-form-label text-md-right\">E-Mail Address</label>\n\n                            <div class=\"col-md-6\">\n                                <input id=\"email\" type=\"email\" class=\"form-control \" name=\"email\" value=\"\" required autocomplete=\"email\" autofocus>\n\n                                                            </div>\n                        </div>\n\n                        <div class=\"form-group row mb-0\">\n                            <div class=\"col-md-6 offset-md-4\">\n                                <button type=\"submit\" class=\"btn btn-primary\">\n                                    Send Password Reset Link\n                                </button>\n                            </div>\n                        </div>\n                    </form>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n        </main>\n    </div>\n</body>\n</html>\n"
+            tags:
+                - Endpoints
+            security: []
+        post:
+            summary: 'Reset the given user''s password.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /password/email:
+        post:
+            summary: 'Send a reset link to the given user.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    '/password/reset/{token}':
+        get:
+            summary: 'Display the password reset view for the given token.'
+            description: 'If no token is present, display the link request form.'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n    <!-- CSRF Token -->\n    <meta name=\"csrf-token\" content=\"Fj0GXjbg3Wt5FXIpPtCalwXZRsy5SYSGha1fqKqo\">\n\n    <title>Soccer-Team-Management</title>\n\n    <!-- Scripts -->\n    <script src=\"http://localhost/js/app.js\" defer></script>\n    <script src=\"http://localhost/js/custom.js\" defer></script>\n    \n    <!-- Fonts -->\n    <link rel=\"dns-prefetch\" href=\"//fonts.gstatic.com\">\n    <link href=\"https://fonts.googleapis.com/css?family=Nunito\" rel=\"stylesheet\">\n\n    <!-- Styles -->\n    <link href=\"http://localhost/css/app.css\" rel=\"stylesheet\">\n    <link href=\"http://localhost/css/custom.css\" rel=\"stylesheet\">\n</head>\n<body>\n    <div id=\"app\">\n        <nav class=\"navbar navbar-expand-md navbar-light bg-white shadow-sm\">\n            <div class=\"container\">\n                <a class=\"navbar-brand\" href=\"http://localhost\">\n                    Soccer-Team-Management\n                </a>\n                <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                    <span class=\"navbar-toggler-icon\"></span>\n                </button>\n\n                <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n                    <!-- Left Side Of Navbar -->\n                    <ul class=\"navbar-nav mr-auto\">\n                                            </ul>\n\n                    <!-- Right Side Of Navbar -->\n                    <ul class=\"navbar-nav ml-auto\">\n                        <!-- Authentication Links -->\n                                                                                    <li class=\"nav-item\">\n                                    <a class=\"nav-link\" href=\"http://localhost/login\">Login</a>\n                                </li>\n                            \n                                                                        </ul>\n                </div>\n            </div>\n        </nav>\n\n        <main class=\"py-4\">\n            <div class=\"container\">\n    <div class=\"row justify-content-center\">\n        <div class=\"col-md-8\">\n            <div class=\"card\">\n                <div class=\"card-header\">Reset Password</div>\n\n                <div class=\"card-body\">\n                    <form method=\"POST\" action=\"http://localhost/password/reset\">\n                        <input type=\"hidden\" name=\"_token\" value=\"Fj0GXjbg3Wt5FXIpPtCalwXZRsy5SYSGha1fqKqo\">\n                        <input type=\"hidden\" name=\"token\" value=\"omnis\">\n\n                        <div class=\"form-group row\">\n                            <label for=\"email\" class=\"col-md-4 col-form-label text-md-right\">E-Mail Address</label>\n\n                            <div class=\"col-md-6\">\n                                <input id=\"email\" type=\"email\" class=\"form-control \" name=\"email\" value=\"\" required autocomplete=\"email\" autofocus>\n\n                                                            </div>\n                        </div>\n\n                        <div class=\"form-group row\">\n                            <label for=\"password\" class=\"col-md-4 col-form-label text-md-right\">Password</label>\n\n                            <div class=\"col-md-6\">\n                                <input id=\"password\" type=\"password\" class=\"form-control \" name=\"password\" required autocomplete=\"new-password\">\n\n                                                            </div>\n                        </div>\n\n                        <div class=\"form-group row\">\n                            <label for=\"password-confirm\" class=\"col-md-4 col-form-label text-md-right\">Confirm Password</label>\n\n                            <div class=\"col-md-6\">\n                                <input id=\"password-confirm\" type=\"password\" class=\"form-control\" name=\"password_confirmation\" required autocomplete=\"new-password\">\n                            </div>\n                        </div>\n\n                        <div class=\"form-group row mb-0\">\n                            <div class=\"col-md-6 offset-md-4\">\n                                <button type=\"submit\" class=\"btn btn-primary\">\n                                    Reset Password\n                                </button>\n                            </div>\n                        </div>\n                    </form>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n        </main>\n    </div>\n</body>\n</html>\n"
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: token
+                description: ''
+                example: omnis
+                required: true
+                schema:
+                    type: string
+    /password/confirm:
+        get:
+            summary: 'Display the password confirmation view.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        post:
+            summary: 'Confirm the given user''s password.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /:
+        get:
+            summary: 'Display a listing of the teams.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n    <!-- CSRF Token -->\n    <meta name=\"csrf-token\" content=\"Fj0GXjbg3Wt5FXIpPtCalwXZRsy5SYSGha1fqKqo\">\n\n    <title>Soccer-Team-Management</title>\n\n    <!-- Scripts -->\n    <script src=\"http://localhost/js/app.js\" defer></script>\n    <script src=\"http://localhost/js/custom.js\" defer></script>\n    \n    <!-- Fonts -->\n    <link rel=\"dns-prefetch\" href=\"//fonts.gstatic.com\">\n    <link href=\"https://fonts.googleapis.com/css?family=Nunito\" rel=\"stylesheet\">\n\n    <!-- Styles -->\n    <link href=\"http://localhost/css/app.css\" rel=\"stylesheet\">\n    <link href=\"http://localhost/css/custom.css\" rel=\"stylesheet\">\n</head>\n<body>\n    <div id=\"app\">\n        <nav class=\"navbar navbar-expand-md navbar-light bg-white shadow-sm\">\n            <div class=\"container\">\n                <a class=\"navbar-brand\" href=\"http://localhost\">\n                    Soccer-Team-Management\n                </a>\n                <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                    <span class=\"navbar-toggler-icon\"></span>\n                </button>\n\n                <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n                    <!-- Left Side Of Navbar -->\n                    <ul class=\"navbar-nav mr-auto\">\n                                            </ul>\n\n                    <!-- Right Side Of Navbar -->\n                    <ul class=\"navbar-nav ml-auto\">\n                        <!-- Authentication Links -->\n                                                                                    <li class=\"nav-item\">\n                                    <a class=\"nav-link\" href=\"http://localhost/login\">Login</a>\n                                </li>\n                            \n                                                                        </ul>\n                </div>\n            </div>\n        </nav>\n\n        <main class=\"py-4\">\n            <div class=\"container\">\n    <div class=\"row\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-10 col-md-offset-1\">\n                    <div class=\"panel panel-default\">\n                        <div class=\"panel-heading\">Team Listing</div>\n                        <div class=\"panel-body\">\n                                                                                            <div class=\"card col-md-3\" style=\"padding: 10px;\">\n                                    <img class=\"card-img-top\" src=\"https://via.placeholder.com/100x100.png/004466?text=rerum\" alt=\"Card image cap\">\n                                    <div class=\"card-block\">\n                                        <h4 class=\"card-title\">Miss Ettie Klein</h4>\n                                        <a href=\"http://localhost/team/1/players\" class=\"btn btn-primary\">View player(s)</a>\n                                    </div>\n                                </div>\n                                                                <div class=\"card col-md-3\" style=\"padding: 10px;\">\n                                    <img class=\"card-img-top\" src=\"https://via.placeholder.com/100x100.png/0066dd?text=voluptas\" alt=\"Card image cap\">\n                                    <div class=\"card-block\">\n                                        <h4 class=\"card-title\">Prof. Casey Osinski</h4>\n                                        <a href=\"http://localhost/team/2/players\" class=\"btn btn-primary\">View player(s)</a>\n                                    </div>\n                                </div>\n                                                                <div class=\"card col-md-3\" style=\"padding: 10px;\">\n                                    <img class=\"card-img-top\" src=\"https://via.placeholder.com/100x100.png/003300?text=reiciendis\" alt=\"Card image cap\">\n                                    <div class=\"card-block\">\n                                        <h4 class=\"card-title\">Evangeline Bergnaum</h4>\n                                        <a href=\"http://localhost/team/3/players\" class=\"btn btn-primary\">View player(s)</a>\n                                    </div>\n                                </div>\n                                                                <div class=\"card col-md-3\" style=\"padding: 10px;\">\n                                    <img class=\"card-img-top\" src=\"https://via.placeholder.com/100x100.png/0011aa?text=officia\" alt=\"Card image cap\">\n                                    <div class=\"card-block\">\n                                        <h4 class=\"card-title\">Erich Mertz</h4>\n                                        <a href=\"http://localhost/team/4/players\" class=\"btn btn-primary\">View player(s)</a>\n                                    </div>\n                                </div>\n                                                                <div class=\"card col-md-3\" style=\"padding: 10px;\">\n                                    <img class=\"card-img-top\" src=\"https://via.placeholder.com/100x100.png/001155?text=voluptas\" alt=\"Card image cap\">\n                                    <div class=\"card-block\">\n                                        <h4 class=\"card-title\">Katheryn Leannon</h4>\n                                        <a href=\"http://localhost/team/5/players\" class=\"btn btn-primary\">View player(s)</a>\n                                    </div>\n                                </div>\n                                                                <div class=\"card col-md-3\" style=\"padding: 10px;\">\n                                    <img class=\"card-img-top\" src=\"https://via.placeholder.com/100x100.png/0055ff?text=a\" alt=\"Card image cap\">\n                                    <div class=\"card-block\">\n                                        <h4 class=\"card-title\">Moriah Langosh</h4>\n                                        <a href=\"http://localhost/team/6/players\" class=\"btn btn-primary\">View player(s)</a>\n                                    </div>\n                                </div>\n                                                                <div class=\"card col-md-3\" style=\"padding: 10px;\">\n                                    <img class=\"card-img-top\" src=\"https://via.placeholder.com/100x100.png/00aacc?text=qui\" alt=\"Card image cap\">\n                                    <div class=\"card-block\">\n                                        <h4 class=\"card-title\">Cielo Cremin</h4>\n                                        <a href=\"http://localhost/team/7/players\" class=\"btn btn-primary\">View player(s)</a>\n                                    </div>\n                                </div>\n                                                                <div class=\"card col-md-3\" style=\"padding: 10px;\">\n                                    <img class=\"card-img-top\" src=\"https://via.placeholder.com/100x100.png/002266?text=quia\" alt=\"Card image cap\">\n                                    <div class=\"card-block\">\n                                        <h4 class=\"card-title\">Vidal Schoen</h4>\n                                        <a href=\"http://localhost/team/8/players\" class=\"btn btn-primary\">View player(s)</a>\n                                    </div>\n                                </div>\n                                                                <div class=\"card col-md-3\" style=\"padding: 10px;\">\n                                    <img class=\"card-img-top\" src=\"https://via.placeholder.com/100x100.png/00aa88?text=dolor\" alt=\"Card image cap\">\n                                    <div class=\"card-block\">\n                                        <h4 class=\"card-title\">Brendan Miller</h4>\n                                        <a href=\"http://localhost/team/9/players\" class=\"btn btn-primary\">View player(s)</a>\n                                    </div>\n                                </div>\n                                                                                    </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n        </main>\n    </div>\n</body>\n</html>\n"
+            tags:
+                - Endpoints
+            security: []
+    '/team/{id}/players':
+        get:
+            summary: 'Fetch and display team''s player(s)'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n    <!-- CSRF Token -->\n    <meta name=\"csrf-token\" content=\"Fj0GXjbg3Wt5FXIpPtCalwXZRsy5SYSGha1fqKqo\">\n\n    <title>Soccer-Team-Management</title>\n\n    <!-- Scripts -->\n    <script src=\"http://localhost/js/app.js\" defer></script>\n    <script src=\"http://localhost/js/custom.js\" defer></script>\n    \n    <!-- Fonts -->\n    <link rel=\"dns-prefetch\" href=\"//fonts.gstatic.com\">\n    <link href=\"https://fonts.googleapis.com/css?family=Nunito\" rel=\"stylesheet\">\n\n    <!-- Styles -->\n    <link href=\"http://localhost/css/app.css\" rel=\"stylesheet\">\n    <link href=\"http://localhost/css/custom.css\" rel=\"stylesheet\">\n</head>\n<body>\n    <div id=\"app\">\n        <nav class=\"navbar navbar-expand-md navbar-light bg-white shadow-sm\">\n            <div class=\"container\">\n                <a class=\"navbar-brand\" href=\"http://localhost\">\n                    Soccer-Team-Management\n                </a>\n                <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                    <span class=\"navbar-toggler-icon\"></span>\n                </button>\n\n                <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n                    <!-- Left Side Of Navbar -->\n                    <ul class=\"navbar-nav mr-auto\">\n                                            </ul>\n\n                    <!-- Right Side Of Navbar -->\n                    <ul class=\"navbar-nav ml-auto\">\n                        <!-- Authentication Links -->\n                                                                                    <li class=\"nav-item\">\n                                    <a class=\"nav-link\" href=\"http://localhost/login\">Login</a>\n                                </li>\n                            \n                                                                        </ul>\n                </div>\n            </div>\n        </nav>\n\n        <main class=\"py-4\">\n            <div class=\"container\">\n    <div class=\"row\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-10 col-md-offset-1\">\n                    <div class=\"panel panel-default\">\n                                                <div class=\"panel-body\">\n                            <h4>Team Players</h4>\n                            <hr>\n                                                            <p> Unfortunately no players are added under this team. Hence, no data availale!!</p>\n                                                    </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n        </main>\n    </div>\n</body>\n</html>\n"
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: id
+                description: ''
+                example: fuga
+                required: true
+                schema:
+                    type: string
+    '/player/{id}/team':
+        get:
+            summary: 'Fetch player details'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n    <!-- CSRF Token -->\n    <meta name=\"csrf-token\" content=\"Fj0GXjbg3Wt5FXIpPtCalwXZRsy5SYSGha1fqKqo\">\n\n    <title>Soccer-Team-Management</title>\n\n    <!-- Scripts -->\n    <script src=\"http://localhost/js/app.js\" defer></script>\n    <script src=\"http://localhost/js/custom.js\" defer></script>\n    \n    <!-- Fonts -->\n    <link rel=\"dns-prefetch\" href=\"//fonts.gstatic.com\">\n    <link href=\"https://fonts.googleapis.com/css?family=Nunito\" rel=\"stylesheet\">\n\n    <!-- Styles -->\n    <link href=\"http://localhost/css/app.css\" rel=\"stylesheet\">\n    <link href=\"http://localhost/css/custom.css\" rel=\"stylesheet\">\n</head>\n<body>\n    <div id=\"app\">\n        <nav class=\"navbar navbar-expand-md navbar-light bg-white shadow-sm\">\n            <div class=\"container\">\n                <a class=\"navbar-brand\" href=\"http://localhost\">\n                    Soccer-Team-Management\n                </a>\n                <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                    <span class=\"navbar-toggler-icon\"></span>\n                </button>\n\n                <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n                    <!-- Left Side Of Navbar -->\n                    <ul class=\"navbar-nav mr-auto\">\n                                            </ul>\n\n                    <!-- Right Side Of Navbar -->\n                    <ul class=\"navbar-nav ml-auto\">\n                        <!-- Authentication Links -->\n                                                                                    <li class=\"nav-item\">\n                                    <a class=\"nav-link\" href=\"http://localhost/login\">Login</a>\n                                </li>\n                            \n                                                                        </ul>\n                </div>\n            </div>\n        </nav>\n\n        <main class=\"py-4\">\n            <div class=\"container\">\n    <div class=\"row\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-10 col-md-offset-1\">\n                    <div class=\"panel panel-default\">\n                        <div class=\"panel-body\">\n                            <h3>Player Detail</h3>\n                            <hr>\n                                                            <p> Unfortunately no details fetched!!</p>\n                                                    </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n        </main>\n    </div>\n</body>\n</html>\n"
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: id
+                description: ''
+                example: odit
+                required: true
+                schema:
+                    type: string
+    /admin:
+        get:
+            summary: 'Redirect admin root route to admin teams listing route'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+    /admin/teams:
+        get:
+            summary: 'Display team listing with CRUD functionality'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+    /admin/team/add:
+        get:
+            summary: 'Add team form'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+    '/admin/team/{id}/edit':
+        get:
+            summary: 'Edit team form'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: id
+                description: ''
+                example: soluta
+                required: true
+                schema:
+                    type: string
+    /admin/players:
+        get:
+            summary: 'Display player listing with CRUD functionality'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+    /admin/player/add:
+        get:
+            summary: 'Add player form'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+    '/admin/player/edit/{id}':
+        get:
+            summary: 'Edit player form with content'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: id
+                description: ''
+                example: esse
+                required: true
+                schema:
+                    type: string

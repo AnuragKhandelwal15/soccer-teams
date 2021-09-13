@@ -1,0 +1,1663 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "localhost"
+        }
+    ],
+    "info": {
+        "name": "Soccer-Team-Management",
+        "_postman_id": "84ae3609-d0a6-4e61-90e9-7cf71f7ebf1a",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "Return an empty response simply to trigger the storage of the CSRF cookie in the browser.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "sanctum\/csrf-cookie",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/sanctum\/csrf-cookie"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PURPOSE : Get All teams\nMETHOD: GET\nPARAMS: none\nURL : \/api\/teams",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/teams",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/teams"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "PURPOSE : Get All teams\nMETHOD: GET\nPARAMS: none\nURL : \/api\/teams Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/teams",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/teams"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"status\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Miss Ettie Klein\",\n            \"logo_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/004466?text=rerum\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Prof. Casey Osinski\",\n            \"logo_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0066dd?text=voluptas\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Evangeline Bergnaum\",\n            \"logo_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/003300?text=reiciendis\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Erich Mertz\",\n            \"logo_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0011aa?text=officia\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Katheryn Leannon\",\n            \"logo_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/001155?text=voluptas\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Moriah Langosh\",\n            \"logo_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0055ff?text=a\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Cielo Cremin\",\n            \"logo_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00aacc?text=qui\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 8,\n            \"name\": \"Vidal Schoen\",\n            \"logo_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/002266?text=quia\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 9,\n            \"name\": \"Brendan Miller\",\n            \"logo_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00aa88?text=dolor\",\n            \"created_at\": null,\n            \"updated_at\": null\n        }\n    ],\n    \"message\": \"Teams List Found\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "PURPOSE: Get All player by team_id\nMETHOD: GET\nPARAMS: team_id\nURL: \/api\/team\/{id}",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/team\/:id",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/team\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "quis",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "PURPOSE: Get All player by team_id\nMETHOD: GET\nPARAMS: team_id\nURL: \/api\/team\/{id} Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/team\/:id",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/team\/:id",
+                                    "variable": [
+                                        {
+                                            "id": "id",
+                                            "key": "id",
+                                            "value": "quis",
+                                            "description": ""
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"status\": false,\n    \"data\": null,\n    \"message\": \"No Teams Found\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "PURPOSE : Player details with team\nMETHOD: GET\nPARAMS : player_id\nURL : \/api\/player\/{id}",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/player\/:id",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/player\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "fugiat",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "PURPOSE : Player details with team\nMETHOD: GET\nPARAMS : player_id\nURL : \/api\/player\/{id} Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/player\/:id",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/player\/:id",
+                                    "variable": [
+                                        {
+                                            "id": "id",
+                                            "key": "id",
+                                            "value": "fugiat",
+                                            "description": ""
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"status\": false,\n    \"data\": null,\n    \"message\": \"No Players Found\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "PURPOSE : Get All players\nMETHOD: GET\nPARAMS: none\nURL : \/api\/players",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/players",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/players"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "PURPOSE : Get All players\nMETHOD: GET\nPARAMS: none\nURL : \/api\/players Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/players",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/players"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"status\": true,\n    \"data\": [\n        {\n            \"id\": 10,\n            \"first_name\": \"Carter\",\n            \"last_name\": \"Hahn\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/002200?text=eos\",\n            \"team_id\": 1,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 12,\n            \"first_name\": \"Jaycee\",\n            \"last_name\": \"Labadie\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/008800?text=et\",\n            \"team_id\": 1,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 22,\n            \"first_name\": \"Titus\",\n            \"last_name\": \"Emard\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0066bb?text=aut\",\n            \"team_id\": 1,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 3,\n            \"first_name\": \"Jocelynsaas\",\n            \"last_name\": \"Stoke\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00ee33?text=ex\",\n            \"team_id\": 2,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 8,\n            \"first_name\": \"Wellington\",\n            \"last_name\": \"Paucek\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00aa88?text=ratione\",\n            \"team_id\": 2,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 19,\n            \"first_name\": \"Eugenia\",\n            \"last_name\": \"Brown\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00ccff?text=dolor\",\n            \"team_id\": 2,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 25,\n            \"first_name\": \"Lorna\",\n            \"last_name\": \"Glover\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/008855?text=ut\",\n            \"team_id\": 2,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 36,\n            \"first_name\": \"Vickie\",\n            \"last_name\": \"Crist\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00ffbb?text=quia\",\n            \"team_id\": 2,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 38,\n            \"first_name\": \"Belle\",\n            \"last_name\": \"Muller\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/006633?text=nam\",\n            \"team_id\": 2,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 49,\n            \"first_name\": \"Catharine\",\n            \"last_name\": \"Kulas\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/003300?text=in\",\n            \"team_id\": 2,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 4,\n            \"first_name\": \"Maymie\",\n            \"last_name\": \"Buckridge\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00aa00?text=aspernatur\",\n            \"team_id\": 3,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 11,\n            \"first_name\": \"Cassandra\",\n            \"last_name\": \"Tremblay\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00ff44?text=nulla\",\n            \"team_id\": 3,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 13,\n            \"first_name\": \"German\",\n            \"last_name\": \"Friesen\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/003311?text=et\",\n            \"team_id\": 3,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 24,\n            \"first_name\": \"Ramon\",\n            \"last_name\": \"Donnelly\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00aa22?text=sit\",\n            \"team_id\": 3,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 35,\n            \"first_name\": \"Enrique\",\n            \"last_name\": \"Russel\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/006655?text=harum\",\n            \"team_id\": 3,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 9,\n            \"first_name\": \"Raymond\",\n            \"last_name\": \"Ebert\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0088cc?text=occaecati\",\n            \"team_id\": 4,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 27,\n            \"first_name\": \"Oleta\",\n            \"last_name\": \"Heathcote\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/001155?text=adipisci\",\n            \"team_id\": 4,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 34,\n            \"first_name\": \"Maia\",\n            \"last_name\": \"Gleason\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00cc22?text=quod\",\n            \"team_id\": 4,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 1,\n            \"first_name\": \"Viviane\",\n            \"last_name\": \"Douglas\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0033cc?text=cumque\",\n            \"team_id\": 5,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 5,\n            \"first_name\": \"Maiya\",\n            \"last_name\": \"Schuppe\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/003366?text=numquam\",\n            \"team_id\": 5,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 18,\n            \"first_name\": \"Gudrun\",\n            \"last_name\": \"Walter\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/009955?text=magni\",\n            \"team_id\": 5,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 30,\n            \"first_name\": \"Kyla\",\n            \"last_name\": \"Kovacek\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0000ff?text=maiores\",\n            \"team_id\": 5,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 31,\n            \"first_name\": \"Fiona\",\n            \"last_name\": \"Predovic\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/008877?text=ratione\",\n            \"team_id\": 5,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 45,\n            \"first_name\": \"Dorothea\",\n            \"last_name\": \"Jakubowski\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0033ee?text=cupiditate\",\n            \"team_id\": 5,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 7,\n            \"first_name\": \"Seth\",\n            \"last_name\": \"Beatty\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0000ee?text=incidunt\",\n            \"team_id\": 6,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 15,\n            \"first_name\": \"Mohammad\",\n            \"last_name\": \"Smith\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00cc55?text=suscipit\",\n            \"team_id\": 6,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 23,\n            \"first_name\": \"Myron\",\n            \"last_name\": \"Terry\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/002288?text=fuga\",\n            \"team_id\": 6,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 26,\n            \"first_name\": \"Stacey\",\n            \"last_name\": \"Stark\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00aaff?text=architecto\",\n            \"team_id\": 6,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 28,\n            \"first_name\": \"Stanton\",\n            \"last_name\": \"Funk\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0099aa?text=maxime\",\n            \"team_id\": 6,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 50,\n            \"first_name\": \"Theresia\",\n            \"last_name\": \"Wilkinson\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/000033?text=et\",\n            \"team_id\": 6,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 16,\n            \"first_name\": \"Wanda\",\n            \"last_name\": \"Haley\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0033ee?text=est\",\n            \"team_id\": 7,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 43,\n            \"first_name\": \"Felton\",\n            \"last_name\": \"Legros\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/008877?text=accusamus\",\n            \"team_id\": 7,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 14,\n            \"first_name\": \"Alexanne\",\n            \"last_name\": \"Vandervort\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/004433?text=alias\",\n            \"team_id\": 8,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 20,\n            \"first_name\": \"Precious\",\n            \"last_name\": \"Stracke\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0088ee?text=vel\",\n            \"team_id\": 8,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 32,\n            \"first_name\": \"Beverly\",\n            \"last_name\": \"Monahan\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/007788?text=expedita\",\n            \"team_id\": 8,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 37,\n            \"first_name\": \"Alvera\",\n            \"last_name\": \"Miller\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0044aa?text=et\",\n            \"team_id\": 8,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 42,\n            \"first_name\": \"Kianna\",\n            \"last_name\": \"Upton\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00ee22?text=sequi\",\n            \"team_id\": 8,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 44,\n            \"first_name\": \"Lowell\",\n            \"last_name\": \"Bogan\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00ffaa?text=tempora\",\n            \"team_id\": 8,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 47,\n            \"first_name\": \"Mae\",\n            \"last_name\": \"Glover\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/005533?text=inventore\",\n            \"team_id\": 8,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 48,\n            \"first_name\": \"Brionna\",\n            \"last_name\": \"Herman\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00aacc?text=et\",\n            \"team_id\": 8,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 2,\n            \"first_name\": \"Omari\",\n            \"last_name\": \"Barton\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/005533?text=est\",\n            \"team_id\": 9,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 21,\n            \"first_name\": \"Susan\",\n            \"last_name\": \"Schneider\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/008833?text=excepturi\",\n            \"team_id\": 9,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 33,\n            \"first_name\": \"Ivory\",\n            \"last_name\": \"Treutel\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/002277?text=earum\",\n            \"team_id\": 9,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 40,\n            \"first_name\": \"Reyes\",\n            \"last_name\": \"Prohaska\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/0044ee?text=qui\",\n            \"team_id\": 9,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 46,\n            \"first_name\": \"Annabelle\",\n            \"last_name\": \"Walsh\",\n            \"player_image_url\": \"https:\\\/\\\/via.placeholder.com\\\/100x100.png\\\/00bb22?text=dolores\",\n            \"team_id\": 9,\n            \"created_at\": null,\n            \"updated_at\": null\n        }\n    ],\n    \"message\": \"Players List Found\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "PURPOSE : Add Team\nMETHOD: POST\nHEADERS: S-TOKEN\nPARAMS: team_name, team_logo\nURL : \/api\/add\/team",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/add\/team",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/add\/team"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PURPOSE : Update\nMETHOD: POST\nHEADERS: S-TOKEN\nPARAMS: id, team_name, team_logo\nURL : \/api\/edit\/team",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/edit\/team",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/edit\/team"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PURPOSE : Delete tean\nMETHOD: POST\nHEADERS: S-TOKEN\nPARAMS: team_id\nURL : \/api\/delete\/team",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/delete\/team",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/delete\/team"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PURPOSE : Get team details\nMETHOD: GET\nHEADERS: S-TOKEN\nPARAMS: none\nURL : \/api\/team-details\/{id}",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/team-details\/:id",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/team-details\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "quia",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "PURPOSE : Get team details\nMETHOD: GET\nHEADERS: S-TOKEN\nPARAMS: none\nURL : \/api\/team-details\/{id} Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/team-details\/:id",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/api\/team-details\/:id",
+                                    "variable": [
+                                        {
+                                            "id": "id",
+                                            "key": "id",
+                                            "value": "quia",
+                                            "description": ""
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"status\": false,\n    \"data\": null,\n    \"message\": \"Invalid Api Key\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "PURPOSE : Add Player\nMETHOD: POST\nHEADERS: S-TOKEN\nPARAMS: first_name, last_name, player_image_url, team_id\nURL : \/api\/add\/player",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/add\/player",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/add\/player"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PURPOSE : Update Player\nMETHOD: POST\nHEADERS: S-TOKEN\nPARAMS: player_id, first_name, last_name, player_image_url, team_id\nURL : \/api\/edit\/player",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/edit\/player",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/edit\/player"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PURPOSE : Delete Player\nMETHOD: POST\nHEADERS: S-TOKEN\nPARAMS: player_id\nURL : \/api\/delete\/player",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/delete\/player",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/delete\/player"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show the application's login form.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "login",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/login"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Show the application's login form. Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "login",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/login"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "null"
+                        }
+                    ]
+                },
+                {
+                    "name": "Handle a login request to the application.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "login",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Log the user out of the application.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "logout",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the form to request a password reset link.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "password\/reset",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/password\/reset"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Display the form to request a password reset link. Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "password\/reset",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/password\/reset"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "null"
+                        }
+                    ]
+                },
+                {
+                    "name": "Send a reset link to the given user.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "password\/email",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/password\/email"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the password reset view for the given token.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "password\/reset\/:token",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/password\/reset\/:token",
+                            "variable": [
+                                {
+                                    "id": "token",
+                                    "key": "token",
+                                    "value": "omnis",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "If no token is present, display the link request form.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Display the password reset view for the given token. Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "password\/reset\/:token",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/password\/reset\/:token",
+                                    "variable": [
+                                        {
+                                            "id": "token",
+                                            "key": "token",
+                                            "value": "omnis",
+                                            "description": ""
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "If no token is present, display the link request form.",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "null"
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset the given user's password.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "password\/reset",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/password\/reset"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the password confirmation view.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "password\/confirm",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/password\/confirm"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Display the password confirmation view. Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "password\/confirm",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/password\/confirm"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Confirm the given user's password.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "password\/confirm",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/password\/confirm"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the teams.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "\/",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/\/"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Display a listing of the teams. Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "\/",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/\/"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "null"
+                        }
+                    ]
+                },
+                {
+                    "name": "Fetch and display team's player(s)",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "team\/:id\/players",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/team\/:id\/players",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "fuga",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Fetch and display team's player(s) Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "team\/:id\/players",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/team\/:id\/players",
+                                    "variable": [
+                                        {
+                                            "id": "id",
+                                            "key": "id",
+                                            "value": "fuga",
+                                            "description": ""
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "null"
+                        }
+                    ]
+                },
+                {
+                    "name": "Fetch player details",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "player\/:id\/team",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/player\/:id\/team",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "odit",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Fetch player details Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "player\/:id\/team",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/player\/:id\/team",
+                                    "variable": [
+                                        {
+                                            "id": "id",
+                                            "key": "id",
+                                            "value": "odit",
+                                            "description": ""
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "null"
+                        }
+                    ]
+                },
+                {
+                    "name": "Redirect admin root route to admin teams listing route",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "admin",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/admin"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Redirect admin root route to admin teams listing route Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "admin",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/admin"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Display team listing with CRUD functionality",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "admin\/teams",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/admin\/teams"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Display team listing with CRUD functionality Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "admin\/teams",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/admin\/teams"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Add team form",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "admin\/team\/add",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/admin\/team\/add"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Add team form Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "admin\/team\/add",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/admin\/team\/add"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Edit team form",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "admin\/team\/:id\/edit",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/admin\/team\/:id\/edit",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "soluta",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Edit team form Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "admin\/team\/:id\/edit",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/admin\/team\/:id\/edit",
+                                    "variable": [
+                                        {
+                                            "id": "id",
+                                            "key": "id",
+                                            "value": "soluta",
+                                            "description": ""
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Display player listing with CRUD functionality",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "admin\/players",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/admin\/players"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Display player listing with CRUD functionality Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "admin\/players",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/admin\/players"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Add player form",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "admin\/player\/add",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/admin\/player\/add"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Add player form Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "admin\/player\/add",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/admin\/player\/add"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Edit player form with content",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "admin\/player\/edit\/:id",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/admin\/player\/edit\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "esse",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Edit player form with content Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "http",
+                                    "host": "{{baseUrl}}",
+                                    "path": "admin\/player\/edit\/:id",
+                                    "query": [],
+                                    "raw": "http:\/\/{{baseUrl}}\/admin\/player\/edit\/:id",
+                                    "variable": [
+                                        {
+                                            "id": "id",
+                                            "key": "id",
+                                            "value": "esse",
+                                            "description": ""
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}
