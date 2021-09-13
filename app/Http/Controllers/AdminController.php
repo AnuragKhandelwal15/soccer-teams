@@ -9,6 +9,7 @@ class AdminController extends Controller
     /**
      * Redirect admin root route to admin teams listing route
      *
+     * @param none
      * @return route redirection
      */
     public function show()
@@ -19,6 +20,7 @@ class AdminController extends Controller
     /**
      * Display team listing with CRUD functionality
      *
+     * @param none
      * @return \Illuminate\Http\Response
      */
     public function teams()
@@ -36,6 +38,7 @@ class AdminController extends Controller
     /**
      * Add team form
      *
+     * @param none
      * @return \Illuminate\Http\Response
      */
     public function addTeam()
@@ -43,10 +46,11 @@ class AdminController extends Controller
         return view('admin.add_team');
     }
 
-
     /**
      * Edit team form
      *
+     * @param integer $id
+     * @param object $request
      * @return \Illuminate\Http\Response
      */
     public function editTeam($id, Request $request)
@@ -69,6 +73,7 @@ class AdminController extends Controller
     /**
      * Display player listing with CRUD functionality
      *
+     * @param none
      * @return \Illuminate\Http\Response
      */
     public function players()
@@ -86,6 +91,7 @@ class AdminController extends Controller
     /**
      * Add player form
      *
+     * @param none
      * @return \Illuminate\Http\Response
      */
     public function addPlayer()
@@ -104,6 +110,8 @@ class AdminController extends Controller
     /**
      * Edit player form with content
      *
+     * @param integer $id
+     * @param object $request
      * @return \Illuminate\Http\Response
      */
     public function editPlayer($id, Request $request)

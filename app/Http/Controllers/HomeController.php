@@ -9,6 +9,7 @@ class HomeController extends Controller
     /**
      * Create a new controller instance.
      *
+     * @param none
      * @return void
      */
     public function __construct()
@@ -19,6 +20,7 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param none
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
