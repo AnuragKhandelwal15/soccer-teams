@@ -25,7 +25,7 @@ class FrontendController extends Controller
     }
 
     /**
-     * Fetch and display team's player(s)
+     * Fetch and display listing of team players
      * @param integer $id
      * @return \Illuminate\Http\Response
     */

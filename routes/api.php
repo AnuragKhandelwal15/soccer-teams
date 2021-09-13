@@ -16,20 +16,26 @@ use App\Http\Middleware\EnsureTokenIsValid;
 |
 */
 
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
 Route::name('api.')->group(function () {
     Route::get('/teams', 'TeamController@teams')->name('teams');
     Route::get('/team/{id}', 'PlayerController@getPlayers')->name('getPlayers');
-    Route::get('/player/{id}', 'PlayerController@getPlayer')->name('getPlayer');
     Route::get('/players', 'PlayerController@players')->name('players');
+    Route::get('/player/{id}', 'PlayerController@getPlayer')->name('getPlayer');
 
     Route::middleware([EnsureTokenIsValid::class])->group(function () {
-        Route::post('/add/team', 'TeamController@addTeam')->name('add_team');
-        Route::post('/edit/team', 'TeamController@updateTeam')->name('edit_team');
-        Route::post('/delete/team', 'TeamController@deleteTeam')->name('delete_team');
+        Route::post('/add/team', 'TeamController@addTeam')->name('addTeam');
+        Route::post('/edit/team', 'TeamController@updateTeam')->name('editTeam');
         Route::get('/team-details/{id}', 'TeamController@teamDetail')->name('teamDetail');
+        Route::post('/delete/team', 'TeamController@deleteTeam')->name('deleteTeam');
 
-        Route::post('/add/player', 'PlayerController@addPlayer')->name('add_player');
-        Route::post('/edit/player', 'PlayerController@updatePlayer')->name('edit_player');
-        Route::post('/delete/player', 'PlayerController@deletePlayer')->name('delete_player');    
+        Route::post('/add/player', 'PlayerController@addPlayer')->name('addPlayer');
+        Route::post('/edit/player', 'PlayerController@updatePlayer')->name('editPlayer');
+        Route::get('/player-details/{id}', 'PlayerController@playerDetail')->name('playerDetail');
+        Route::post('/delete/player', 'PlayerController@deletePlayer')->name('deletePlayer');
     });
+
 });

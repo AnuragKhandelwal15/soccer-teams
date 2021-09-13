@@ -22,7 +22,7 @@ class TeamController extends BaseController
     /**
      * PURPOSE : Get All teams
      * METHOD: GET
-     * PARAMS: none
+     * PARAMS: None
      * URL : /api/teams
     */
     public function teams()
@@ -40,12 +40,16 @@ class TeamController extends BaseController
      * PURPOSE : Get team details
      * METHOD: GET
      * HEADERS: S-TOKEN
-     * PARAMS: none
+     * PARAMS: None
      * URL : /api/team-details/{id}
     */
-    public function teamDetail($id)
+    public function teamDetail($teamId)
     {
-        $team = $this->teamRepository->findById($id)->toArray();
+        if (empty($this->teamRepository->findById($teamId))){
+            return $this->sendError('No Team Found', 404);
+        }
+
+        $team = $this->teamRepository->findById($teamId)->toArray();
 
         return  $this->sendResponse(
                     $team,

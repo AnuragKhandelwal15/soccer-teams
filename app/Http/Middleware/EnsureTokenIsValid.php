@@ -25,9 +25,10 @@ class EnsureTokenIsValid
                 'message' => "Invalid Api Key",
             ];
 
-            return response()->json($response, 401);exit();
-        }
+            return response()->json($response, 201);exit();
+        } else {
 
-        return $next($request);
+            return $next($request);
+        }
     }
 }

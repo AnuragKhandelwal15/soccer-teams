@@ -13,25 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Remove register route
+// remove register route
 Auth::routes(['register' => false]);
 
-// Front routes for guest users
+// Front controller for guest users
 Route::get('/', 'FrontendController@index')->name('home');
 Route::get('/team/{id}/players', 'FrontendController@getPlayers')->name('getPlayers');
 Route::get('/player/{id}/team', 'FrontendController@getPlayer')->name('getPlayer');
 
-// Admin routes
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
-    // Team routes
     Route::get('/', 'AdminController@show');
-    Route::get('teams', 'AdminController@teams')->name('admin_teams');
-    Route::get('team/add', 'AdminController@addTeam')->name('add_team');
-    Route::get('/team/{id}/edit', 'AdminController@editTeam')->name('edit_team');
+    Route::get('teams', 'AdminController@teams')->name('adminTeams');
+    Route::get('team/add', 'AdminController@addTeam')->name('addTeam');
+    Route::get('/team/{id}/edit', 'AdminController@editTeam')->name('editTeam');
 
-    // Player routes
-    Route::get('players', 'AdminController@players')->name('admin_players');
-    Route::get('player/add', 'AdminController@addPlayer')->name('add_player');
-    Route::get('player/edit/{id}', 'AdminController@editPlayer')->name('edit_player');
+    Route::get('players', 'AdminController@players')->name('adminPlayers');
+    Route::get('player/add', 'AdminController@addPlayer')->name('addPlayer');
+    Route::get('player/edit/{id}', 'AdminController@editPlayer')->name('editPlayer');
 });
 

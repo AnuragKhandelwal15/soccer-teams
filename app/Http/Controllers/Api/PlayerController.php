@@ -23,20 +23,20 @@ class PlayerController extends BaseController
     }
 
     /**
-     * PURPOSE: Get All player by team_id
+     * PURPOSE: Get All player by teamId
      * METHOD: GET
-     * PARAMS: team_id
+     * PARAMS: None
      * URL: /api/team/{id}
     */
-    public function getPlayers($team_id)
+    public function getPlayers($teamId)
     {
-        if (empty($this->teamRepository->findById($team_id))){
+        if (empty($this->teamRepository->findById($teamId))){
             return $this->sendError('No Teams Found', 404);
         }
 
         $data = [];
-        $data['teamDetails'] = $this->teamRepository->findById($team_id)->toArray();
-        $data['players'] = $this->playerRepository->getAll($team_id)->toArray();
+        $data['teamDetails'] = $this->teamRepository->findById($teamId)->toArray();
+        $data['players'] = $this->playerRepository->getAll($teamId)->toArray();
 
         return  $this->sendResponse(
                     $data,
@@ -48,17 +48,17 @@ class PlayerController extends BaseController
     /**
      * PURPOSE : Player details with team
      * METHOD: GET
-     * PARAMS : player_id
+     * PARAMS : None
      * URL : /api/player/{id}
     */
-    public function getPlayer($player_id)
+    public function getPlayer($playerId)
     {
-        if (empty($this->playerRepository->findById($player_id))){
+        if (empty($this->playerRepository->findById($playerId))){
             return $this->sendError('No Players Found', 404);
         }
 
         $data = [];
-        $data = $this->playerRepository->findById($player_id)->toArray();
+        $data = $this->playerRepository->findById($playerId)->toArray();
 
         return  $this->sendResponse(
                     $data,
@@ -70,7 +70,7 @@ class PlayerController extends BaseController
     /**
      * PURPOSE : Get All players
      * METHOD: GET
-     * PARAMS: none
+     * PARAMS: None
      * URL : /api/players
     */
     public function players()
@@ -113,6 +113,29 @@ class PlayerController extends BaseController
                     201
                 );
     }
+
+    /**
+     * PURPOSE : Player details
+     * METHOD: GET
+     * HEADERS: S-TOKEN
+     * REQ PARAMS : none
+     * URL : /api/player-details/{id}
+    */
+    public function playerDetail($playerId)
+    {
+        if (empty($this->playerRepository->findById($playerId))){
+            return $this->sendError('No Player Found', 404);
+        }
+
+        $data = [];
+        $data = $this->playerRepository->findById($playerId)->toArray();
+
+        return  $this->sendResponse(
+                    $data,
+                    'Player Detail',
+                     201
+                 );
+     }
 
     /**
      * PURPOSE : Update Player
