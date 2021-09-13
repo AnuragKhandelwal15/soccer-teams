@@ -36,11 +36,12 @@ class Team extends Model
     ];
 
     /**
-     * cascade delete
+     * Cascade delete
      */
     protected static function boot()
     {
         parent::boot();
+
         self::deleted(function ($team) {
             $team->players()->delete();
         });
